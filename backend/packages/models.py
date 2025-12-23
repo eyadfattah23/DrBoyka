@@ -6,10 +6,12 @@ from django.db import models
 class Package(models.Model):
     name = models.CharField(max_length=255, unique=True)
     short_description = models.TextField()
-    one_month_price_before_discount = models.DecimalField(
+    one_month_price_before_discount = models.DecimalField(verbose_name="1 Month Price Before Discount",
         max_digits=10, decimal_places=2)
-    one_month_price_after_discount = models.DecimalField(
+    
+    one_month_price_after_discount = models.DecimalField(verbose_name="1 Month Price After Discount",
         max_digits=10, decimal_places=2)
+    
     six_month_price_before_discount = models.DecimalField(
         max_digits=10, decimal_places=2)
     six_month_price_after_discount = models.DecimalField(

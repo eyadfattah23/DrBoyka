@@ -17,10 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include, path
-from packages.urls import router as packages_router
-from users.urls import router as users_router
+from rest_framework.routers import DefaultRouter
+from packages.views import PackageViewSet, SubscriptionViewSet
+from users.views import TransformationViewSet
+
+from django.conf import settings 
+from django.conf.urls.static import static
+router = DefaultRouter()
+router.register('packages', PackageViewSet)
+router.register('subscriptions', SubscriptionViewSet)
+router.register('transformations', TransformationViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(packages_router.urls)),
-    path('api/', include(users_router.urls)),
-]
+    path('api/', include(router.urls)),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -13,14 +13,23 @@ installation and Setup Instructions:
    ```
 3. Install the required packages:
    ```bash
-   pip install -r requirements.txt
+   pip3 install -r requirements.txt
    ```
 4. Apply migrations:
    ```bash
-   python manage.py migrate
+   python3 manage.py makemigrations
+   python3 manage.py migrate
    ```
-5. Run the development server:
+5. Create a superuser to access the admin panel (skip if you don't want to have access to it):
    ```bash
-   python manage.py runserver
+   python3 manage.py createsuperuser
    ```
-6. Access the application at `http://127.0.0.1:8000/api`.
+6.  Run seed script to populate the database with initial data:
+   ```bash
+   python3 seed_db.py
+   ```
+7. Run the development server:
+   ```bash
+   python3 manage.py runserver
+   ```
+8. Access the application at `http://127.0.0.1:8000/api` or `http://127.0.0.1:8000/admin`.
