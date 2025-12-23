@@ -54,7 +54,7 @@ export default function Services() {
           {items.map((item, idx) => (
             <div
               key={idx}
-              className="flex flex-col sm:items-start sm:text-right items-center text-center px-3 pt-3 pb-8 rounded-3xl shadow-sm relative"
+              className="flex flex-col sm:items-start sm:text-right items-center text-center px-2.5 pt-2.5 pb-8 rounded-3xl shadow-sm relative"
               style={{
                 BoxShadow: "0px 4px 200px 0px rgba(0, 0, 0, 0.1)",
                 backgroundColor: "white",
