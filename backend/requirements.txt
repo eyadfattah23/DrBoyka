@@ -15,7 +15,6 @@ chardet==5.2.0
 charset-normalizer==3.4.3
 click==8.1.7
 cloudinary==1.44.1
-cockpit @ file:///builddir/build/BUILD/cockpit-351-build/cockpit-351/tmp/wheel/cockpit-351-py3-none-any.whl#sha256=59d2dcd42c86f8d88df2a0b4afd6bee5c58753efde42f78d6ed1686b14aa61df
 crypt_r==3.13.1
 cupshelpers==1.0
 dasbus==1.7
