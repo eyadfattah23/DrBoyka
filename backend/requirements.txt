@@ -30,6 +30,7 @@ dnf==4.24.0
 fedora-third-party==0.10
 file-magic==0.4.0
 frozenlist==1.8.0
+gunicorn==23.0.0
 h11==0.16.0
 httpcore==1.0.9
 httpx==0.28.1
@@ -108,5 +109,6 @@ twilio==9.9.0
 typing_extensions==4.15.0
 tzdata==2025.3
 urllib3==2.5.0
+whitenoise==6.11.0
 xkbregistry==0.3
 yarl==1.22.0
