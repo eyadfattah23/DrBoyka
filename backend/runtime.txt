@@ -1,2 +1,1 @@
-cd backend
-echo "python-3.11.10" > runtime.txt
+python-3.11.10
