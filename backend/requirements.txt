@@ -21,7 +21,6 @@ Django==5.2.9
 django-cloudinary-storage==0.3.0
 django-cors-headers==4.9.0
 djangorestframework==3.16.1
-dnf==4.24.0
 fedora-third-party==0.10
 file-magic==0.4.0
 frozenlist==1.8.0
