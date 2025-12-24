@@ -68,7 +68,6 @@ pyenchant==3.2.2
 PyGObject==3.54.5
 pyinotify==0.9.6
 PyJWT==2.10.1
-pykickstart @ file:///builddir/build/BUILD/pykickstart-3.66-build/pykickstart-3.66
 pyparted==3.13.0
 PySocks==1.7.1
 python-augeas==1.2.0
@@ -82,7 +81,6 @@ pytz==2025.2
 pyudev==0.24.3
 pyxdg==0.27
 PyYAML==6.0.2
-pyynl @ file:///builddir/build/BUILD/kernel-6.17.9-build/kernel-6.17.9/linux-6.17.9-300.fc43.x86_64/tools/net/ynl
 RapidFuzz==3.12.2
 referencing==0.36.2
 regex==2025.10.23
@@ -93,8 +91,6 @@ rpds-py==0.27.0
 rpm==6.0.0
 rpmautospec==0.8.3
 rpmautospec-core==0.1.5
-selinux @ file:///builddir/build/BUILD/libselinux-3.9-build/libselinux-3.9/src
-sepolicy @ file:///builddir/build/BUILD/policycoreutils-3.9-build/selinux-3.9/python/sepolicy
 setools==4.6.0
 setuptools==78.1.1
 simpleline==1.9.0
