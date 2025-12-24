@@ -15,7 +15,6 @@ charset-normalizer==3.4.3
 click==8.1.7
 cloudinary==1.44.1
 crypt_r==3.13.1
-cupshelpers==1.0
 dasbus==1.7
 dbus-python==1.4.0
 dbus_next==0.2.3
