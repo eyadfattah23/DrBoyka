@@ -11,14 +11,14 @@ class Package(models.Model):
     
     one_month_price_after_discount = models.DecimalField(verbose_name="1 Month Price After Discount",
         max_digits=10, decimal_places=2)
-    
-    six_month_price_before_discount = models.DecimalField(
+
+    six_month_price_before_discount = models.DecimalField(verbose_name="6 Months Price Before Discount",
         max_digits=10, decimal_places=2)
-    six_month_price_after_discount = models.DecimalField(
+    six_month_price_after_discount = models.DecimalField(verbose_name="6 Months Price After Discount",
         max_digits=10, decimal_places=2)
-    twelve_month_price_before_discount = models.DecimalField(
+    twelve_month_price_before_discount = models.DecimalField(verbose_name="12 Months Price Before Discount",
         max_digits=10, decimal_places=2)
-    twelve_month_price_after_discount = models.DecimalField(
+    twelve_month_price_after_discount = models.DecimalField(verbose_name="12 Months Price After Discount",
         max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
