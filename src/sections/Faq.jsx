@@ -16,37 +16,31 @@ const dataColumn1 = [
   },
   {
     id: 3,
-    question: "كيف يتم التواصل والمتابعة؟",
+    question: "هل يمكنني التمرين في المنزل؟",
     answer:
-      "نعم، جميع البرامج يتم تصميمها خصيصاً لتناسب مستواك الحالي سواء كنت مبتدئاً أو محترفاً.",
-  },
-  {
-    id: 5,
-    question: "هل أحتاج لمكملات غذائية؟",
-    answer:
-      "نعم، جميع البرامج يتم تصميمها خصيصاً لتناسب مستواك الحالي سواء كنت مبتدئاً أو محترفاً.",
+      "على الرغم من أن الصالة الرياضية توفر بيئة داعمة في العديد من النواحي، ولكن يمكن أيضًا الوصول لنتائج متميزة من خلال التمرين في المنزل، ونحن نضمن لك المتابعة والدعم لتحقيق ذلك بفعالية.",
   },
 ];
 
 const dataColumn2 = [
   {
     id: 2,
-    question: "هل يمكنني التمرين في المنزل؟",
+    question: "كيف يتم التواصل والمتابعة؟",
     answer:
-      "نعم، جميع البرامج يتم تصميمها خصيصاً لتناسب مستواك الحالي سواء كنت مبتدئاً أو محترفاً.",
+      "المتابعة تكون يومياً على الواتساب بشكل شخصي ومباشر 100% وبدون وجود أي مساعدين.",
   },
   {
     id: 4,
-    question: "عندي مشكلة في دفع الاشتراك ؟",
+    question: "هل أحتاج لمكملات غذائية؟",
     answer:
-      "نعم، جميع البرامج يتم تصميمها خصيصاً لتناسب مستواك الحالي سواء كنت مبتدئاً أو محترفاً.",
+      "معظم الأشخاص يستطيعون تلبية احتياجاتهم الغذائية من خلال نظام غذائي متوازن، ولكن قد تكون المكملات ضرورية في بعض الحالات الخاصة، بناءً على التقييم الفردي واحتياجاتك الصحية.",
   },
 ];
 
 function AccordionItem({ item, isOpen, onClick }) {
   return (
     <div
-      className="bg-white rounded-2xl overflow-hidden p-2 md:p-5"
+      className="bg-white rounded-2xl overflow-hidden xs:p-2 md:p-5"
       style={{
         boxShadow: "0px 24.56px 32.74px -14.73px rgba(149, 149, 149, 0.25)",
       }}
@@ -55,7 +49,7 @@ function AccordionItem({ item, isOpen, onClick }) {
         onClick={onClick}
         className="w-full text-left p-4 flex justify-between items-center cursor-pointer"
       >
-        <span className="font-medium md:font-bold text-lg md:text-xl">
+        <span className="xs:font-medium md:font-bold xs:text-lg md:text-xl">
           {item.question}
         </span>
         <span className="text-2xl md:text-3xl">
@@ -70,7 +64,7 @@ function AccordionItem({ item, isOpen, onClick }) {
             animate={{ height: "auto" }}
             exit={{ height: 0 }}
             transition={{ duration: 0.01 }}
-            className="p-4 pl-12 text-xl"
+            className="p-4 pl-12 xs:text-lg md:text-xl text-justify"
             style={{ color: "rgba(54, 48, 73, 1)" }}
           >
             {item.answer}

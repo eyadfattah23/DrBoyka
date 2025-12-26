@@ -108,6 +108,15 @@ const Video = () => {
   const effectiveHover = isHovering && !justStarted;
   const showOverlayAndControls = effectiveHover || (!isPlaying && hasStarted);
 
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsDesktop(window.innerWidth >= 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <div
       className="pt-14 pb-22"
@@ -126,7 +135,7 @@ const Video = () => {
 
         <div
           ref={containerRef}
-          className="relative w-full lg:w-160 rounded-2xl overflow-hidden cursor-pointer
+          className="relative w-full sm:w-145 md:w-160 rounded-2xl overflow-hidden cursor-pointer
              shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_30px_60px_rgba(0,0,0,0.8)]"
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
@@ -134,8 +143,16 @@ const Video = () => {
         >
           <video
             ref={videoRef}
-            src={"/images/video.mp4"}
-            poster={"/images/video-poster.png"}
+            src={
+              isDesktop
+                ? "/images/original-video-expanded.mp4"
+                : "/images/original-video.MP4"
+            }
+            poster={
+              isDesktop
+                ? "/images/original-poster-expanded.jpg"
+                : "/images/original-poster.jpg"
+            }
             className="w-full h-auto block"
             onClick={handleVideoClick}
             playsInline
@@ -246,7 +263,7 @@ const Video = () => {
                   <div
                     className="
                       absolute top-1/2 -translate-y-1/2
-                      md:w-4 md:h-4
+                      w-3 h-3 md:w-4 md:h-4
                       rounded-full
                       -translate-x-1/2
                       transition-all duration-200
