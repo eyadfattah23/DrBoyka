@@ -54,13 +54,13 @@ function App() {
         ) : (
           // لو مفيش باقة مختارة، اعرض المحتوى العادي
           <>
-            <Hero /> // واخد id main
+            <Hero /> {/* واخد id main */}
             <img
               src="/images/hero-right-ellipse.png"
               alt="hero-right-ellipse"
               className="absolute -top-30 -right-30 lg:-top-100 lg:-right-120 z-0"
             />
-            <Services /> // واخد id services
+            <Services /> {/* واخد id services */}
             <Video />
             <Who />
             <div id="transformations">
@@ -69,8 +69,8 @@ function App() {
               nihil magnam tempore eligendi adipisci iusto quasi porro velit,
               est excepturi?
             </div>
-            <Packages onSelectPackage={setSelectedPackage} /> // واخد id
-            packages
+            {/* واخد id packages*/}
+            <Packages onSelectPackage={setSelectedPackage} />
             <Faq />
           </>
         )}
