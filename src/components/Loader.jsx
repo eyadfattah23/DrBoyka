@@ -2,19 +2,9 @@ export default function Loader() {
   return (
     <>
       <style>{`
-        body, html {
-          width: 100%;
-          height: 100%;
-          background-color: #f8f4d5;
-        }
-
         .container {
           width: 200px;
           height: 200px;
-          position: absolute;
-          top: 62%;
-          left: 50%;
-          transform: translate(-50%, -50%);
           filter: url("#goo");
           animation: rotate-move 2s ease-in-out infinite;
         }
@@ -68,9 +58,9 @@ export default function Loader() {
         }
 
         @keyframes rotate-move {
-          55% { transform: translate(-50%, -50%) rotate(0deg); }
-          80% { transform: translate(-50%, -50%) rotate(360deg); }
-          100% { transform: translate(-50%, -50%) rotate(360deg); }
+          55% { transform:  rotate(0deg); }
+          80% { transform: rotate(360deg); }
+          100% { transform: rotate(360deg); }
         }
 
         @keyframes index {
@@ -80,7 +70,7 @@ export default function Loader() {
         }
       `}</style>
 
-      <div className="container">
+      <div className="container mx-auto mt-16">
         <div className="dot dot-1"></div>
         <div className="dot dot-2"></div>
         <div className="dot dot-3"></div>

@@ -15,20 +15,20 @@ export function PackagesProvider({ children }) {
 
     {
       fetch(`${BASE_URL}/api/packages`)
-      .then((res) => {
-        if (!res.ok) throw new Error();
-        return res.json();
-      })
-      .then((data) => {
-        setPackages(data);
-        console.log("Packages:", data);
-      })
-      .catch(() => {
-        setErrorFetchingPackages(true);
-      })
-      .finally(() => {
-        setPackagesIsLoading(false);
-      });
+        .then((res) => {
+          if (!res.ok) throw new Error();
+          return res.json();
+        })
+        .then((data) => {
+          setPackages(data);
+          console.log("Packages:", data);
+        })
+        .catch(() => {
+          setErrorFetchingPackages(true);
+        })
+        .finally(() => {
+          setPackagesIsLoading(false);
+        });
     }
   }, []);
 

@@ -8,7 +8,7 @@ export default function Button({
   return (
     <button
       onClick={onClick}
-      className={`flex items-center justify-center gap-1.5 px-4 py-2 rounded-2xl ${className}`}
+      className={`flex items-center justify-center gap-1.5 px-4 py-2 rounded-2xl cursor-pointer ${className}`}
       style={{ backgroundColor: "var(--color-primary)", ...style }}
     >
       <span>{text}</span>
