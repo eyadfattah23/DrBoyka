@@ -13,6 +13,7 @@ import PackagePopup from "./sections/PackagePopup";
 import Lenis from "@studio-freight/lenis";
 import { useEffect } from "react";
 import Transformations from "./sections/Transformations";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [selectedPackage, setSelectedPackage] = useState(null);
@@ -42,38 +43,47 @@ function App() {
   }, []);
 
   return (
-    <PackagesProvider>
-      <div style={{ backgroundColor: "var(--color-bg)", position: "relative" }}>
-        <Header />
+    <>
+      <ToastContainer
+        position="top-left"
+        rtl={true}
+        theme="colored"
+      />
+      <PackagesProvider>
+        <div
+          style={{ backgroundColor: "var(--color-bg)", position: "relative" }}
+        >
+          <Header />
 
-        {/* لو فيه باقة مختارة، اعرض PackagePopup بس */}
-        {selectedPackage ? (
-          <PackagePopup
-            pkg={selectedPackage}
-            onClose={() => setSelectedPackage(null)}
-          />
-        ) : (
-          // لو مفيش باقة مختارة، اعرض المحتوى العادي
-          <>
-            <Hero /> {/* واخد id main */}
-            <img
-              src="/images/hero-right-ellipse.png"
-              alt="hero-right-ellipse"
-              className="absolute -top-30 -right-30 lg:-top-100 lg:-right-120 z-0"
+          {/* لو فيه باقة مختارة، اعرض PackagePopup بس */}
+          {selectedPackage ? (
+            <PackagePopup
+              pkg={selectedPackage}
+              onClose={() => setSelectedPackage(null)}
             />
-            <Services /> {/* واخد id services */}
-            <Video />
-            <Who />
-            <Transformations />
-            {/* واخد id packages*/}
-            <Packages onSelectPackage={setSelectedPackage} />
-            <Faq />
-          </>
-        )}
+          ) : (
+            // لو مفيش باقة مختارة، اعرض المحتوى العادي
+            <>
+              <Hero /> {/* واخد id main */}
+              <img
+                src="/images/hero-right-ellipse.png"
+                alt="hero-right-ellipse"
+                className="absolute -top-30 -right-30 lg:-top-100 lg:-right-120 z-0"
+              />
+              <Services /> {/* واخد id services */}
+              <Video />
+              <Who />
+              <Transformations />
+              {/* واخد id packages*/}
+              <Packages onSelectPackage={setSelectedPackage} />
+              <Faq />
+            </>
+          )}
 
-        <Footer />
-      </div>
-    </PackagesProvider>
+          <Footer />
+        </div>
+      </PackagesProvider>
+    </>
   );
 }
 

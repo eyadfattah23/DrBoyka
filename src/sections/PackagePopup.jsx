@@ -9,6 +9,7 @@ import Select, { components } from "react-select";
 import { FaWhatsapp } from "react-icons/fa";
 import { CiMobile1 } from "react-icons/ci";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import { toast } from "react-toastify";
 
 export default function PackagePopup({ pkg, onClose }) {
   // ======== حالات النموذج ========
@@ -25,11 +26,6 @@ export default function PackagePopup({ pkg, onClose }) {
 
   // لو مفيش باقة، متعرضش حاجة
   if (!pkg) return null;
-
-  // ======== Helper Functions ========
-
-  // عرض رسالة تنبيه بسيطة
-  const showToast = (msg) => alert(msg);
 
   // تنظيف الإدخال الرقمي والحد من الطول
   const handleNumberInput = (value, setter, maxLength) => {
@@ -81,11 +77,11 @@ export default function PackagePopup({ pkg, onClose }) {
 
     // التحقق من اختيار كود البلد
     if (!whatsappCode) {
-      showToast("يرجى اختيار كود بلد الواتساب.");
+      toast.error("يرجى اختيار كود البلد!");
       return;
     }
     if (!callsCode) {
-      showToast("يرجى اختيار كود بلد المكالمات.");
+      toast.error("يرجى اختيار كود البلد!");
       return;
     }
 
@@ -95,27 +91,29 @@ export default function PackagePopup({ pkg, onClose }) {
     // تحقق خاص برقم مصر (يبدأ بـ 01 و10 أرقام)
     if (whatsappCode === "+20") {
       if (whatsappDigits !== 10 || !whatsappNumber.startsWith("1")) {
-        showToast("رقم الواتساب المصري يجب أن يبدأ بـ01 ويحتوي على 10 أرقام.");
+        toast.error("رقم الواتساب المصري يجب أن يبدأ بـ 1 ويتكون من 10 أرقام!");
         return;
       }
     } else if (whatsappDigits < 5) {
-      showToast("رقم الواتساب يجب أن يكون 5 أرقام على الأقل.");
+      toast.error("رقم الواتساب يجب أن يتكون من 5 أرقام على الأقل!");
       return;
     }
 
     if (callsCode === "+20") {
       if (callsDigits !== 10 || !callsNumber.startsWith("1")) {
-        showToast("رقم المكالمات المصري يجب أن يبدأ بـ01 ويحتوي على 10 أرقام.");
+        toast.error(
+          "رقم المكالمات المصري يجب أن يبدأ بـ 1 ويتكون من 10 أرقام!"
+        );
         return;
       }
     } else if (callsDigits < 5) {
-      showToast("رقم المكالمات يجب أن يكون 5 أرقام على الأقل.");
+      toast.error("رقم المكالمات يجب أن يتكون من 5 أرقام على الأقل!");
       return;
     }
 
     // تحقق من صحة الإيميل إذا تم إدخاله
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      showToast("يرجى إدخال بريد إلكتروني صالح.");
+      toast.error("يرجى إدخال بريد إلكتروني صالح");
       return;
     }
 
@@ -143,17 +141,17 @@ export default function PackagePopup({ pkg, onClose }) {
       const result = await response.json();
 
       if (result.success) {
-        showToast("تم بنجاح! سيتم التواصل معك قريبا");
+        toast.success("تم بنجاح وسيتم التواصل معك قريبا!");
         resetForm();
         onClose();
         window.lenis.scrollTo(0, {
           duration: 0.5,
         });
       } else {
-        showToast("حدث خطأ غير متوقع!");
+        toast.error("حدث خطأ غير متوقع!");
       }
     } catch (error) {
-      showToast("حدث خطأ غير متوقع!");
+      toast.error("حدث خطأ غير متوقع!");
       console.log(error);
     } finally {
       setLoading(false);
