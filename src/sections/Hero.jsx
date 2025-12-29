@@ -58,7 +58,7 @@ export default function Hero() {
               className="text-black w-53 py-4 font-bold hidden lg:flex"
               onClick={() =>
                 window.lenis.scrollTo(`#packages`, {
-                  duration: 1,
+                  duration: 1.5,
                   offset: -86,
                 })
               }
@@ -71,7 +71,7 @@ export default function Hero() {
               className="text-black w-53 py-4 font-bold flex lg:hidden"
               onClick={() =>
                 window.lenis.scrollTo(`#packages`, {
-                  duration: 1,
+                  duration: 1.5,
                   offset: -62,
                 })
               }

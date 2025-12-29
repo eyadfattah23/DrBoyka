@@ -10,6 +10,9 @@ import { FaWhatsapp } from "react-icons/fa";
 import { CiMobile1 } from "react-icons/ci";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { toast } from "react-toastify";
+import { useRef } from "react";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 
 export default function PackagePopup({ pkg, onClose }) {
   // ======== حالات النموذج ========
@@ -20,6 +23,8 @@ export default function PackagePopup({ pkg, onClose }) {
   const [callsNumber, setCallsNumber] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const whatsappInputRef = useRef(null);
+  const callsInputRef = useRef(null);
 
   // ======== معلومات الباقة ========
   const selectedMonth = pkg?.selectedMonth || 1;
@@ -77,11 +82,11 @@ export default function PackagePopup({ pkg, onClose }) {
 
     // التحقق من اختيار كود البلد
     if (!whatsappCode) {
-      toast.error("يرجى اختيار كود البلد!");
+      toast.error("يرجى اختيارالبلد!");
       return;
     }
     if (!callsCode) {
-      toast.error("يرجى اختيار كود البلد!");
+      toast.error("يرجى اختيارالبلد!");
       return;
     }
 
@@ -141,12 +146,28 @@ export default function PackagePopup({ pkg, onClose }) {
       const result = await response.json();
 
       if (result.success) {
-        toast.success("تم بنجاح وسيتم التواصل معك قريبا!");
-        resetForm();
-        onClose();
         window.lenis.scrollTo(0, {
           duration: 0.5,
         });
+        Swal.fire({
+          html: '<p class="custom-text">تم بنجاح وسيتم التواصل معك قريبا!</p>', // النص أسفل العنوان
+          icon: "success", // أيقونة التنبيه: 'info', 'success', 'error', 'warning'
+          confirmButtonText: "حسنا", // نص زر التأكيد
+          allowOutsideClick: false,
+          customClass: {
+            popup: "custom-popup", // الصندوق كله
+            confirmButton: "custom-btn", // زر التأكيد
+          },
+        }).then((result) => {
+          if (result.isConfirmed) {
+            setTimeout(() => {
+              window.location.reload();
+            }, 500);
+            // هنا تحط الحاجة اللي عايز تحصل بعد الضغط على الزر
+            console.log("تم الضغط على الزر");
+          }
+        });
+        resetForm();
       } else {
         toast.error("حدث خطأ غير متوقع!");
       }
@@ -165,45 +186,57 @@ export default function PackagePopup({ pkg, onClose }) {
     value: c.dial_code,
     label: (
       <div className="flex items-center gap-2">
-        <img
-          src={`https://flagsapi.com/${c.code}/flat/32.png`}
-          alt={c.name}
-          className="w-7 h-5 object-contain"
-        />
-        <span>{c.dial_code}</span>
+        <div className="w-7 h-4 flex justify-center items-center border border-gray-200 shadow-[0_2px_6px_rgba(0,0,0,0.08)] transform -skew-x-12 rounded-sm overflow-hidden">
+          <img
+            src={`https://flagsapi.com/${c.code}/flat/32.png`}
+            alt={c.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <span className="font-medium">{c.name}</span>
+        <span dir="ltr" className="text-gray-500">
+          {c.dial_code}
+        </span>
       </div>
     ),
+    name: c.name,
     code: c.code,
   }));
 
   // تنسيقات React Select المخصصة
   const customStyles = {
-    control: (provided) => ({
+    control: (provided, state) => ({
       ...provided,
       minWidth: "100px",
       borderRadius: "0.5rem",
-      border: "none",
       backgroundColor: "rgba(243,243,243,1)",
       paddingLeft: "0.5rem",
       paddingRight: "0.5rem",
+      cursor: "pointer",
+      border: "none",
+      boxShadow: state.isFocused ? "0 0 0 3px rgba(205,233,78,0.45)" : "none",
     }),
     menu: (provided) => ({
       ...provided,
       zIndex: 50,
       boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-      borderRadius: "0.5rem",
-      maxHeight: "200px",
+      maxHeight: "210px",
       overflow: "auto",
+      borderRadius: "0.5rem",
     }),
     menuList: (provided) => ({
       ...provided,
-      maxHeight: "200px",
+      maxHeight: "210px",
       overflow: "auto",
+      padding: "5px",
     }),
     option: (provided, state) => ({
       ...provided,
       backgroundColor: state.isFocused ? "rgba(205,233,78,0.2)" : "white",
       color: "black",
+      cursor: "pointer",
+      borderRadius: "0.5rem",
     }),
   };
 
@@ -353,40 +386,39 @@ export default function PackagePopup({ pkg, onClose }) {
                 {/* حقل رقم الواتساب */}
                 <div className="flex gap-3 items-start flex-col sm:flex-row sm:pt-0 pt-2.5 border-gray-300 border-t-2 border-dotted sm:border-none">
                   {/* كود الدولة */}
-                  <div className="flex-1 flex flex-col w-full">
+                  <div className="sm:w-[45%] flex flex-col w-full">
                     <label className="block mb-1.5 text-sm font-semibold text-right">
-                      كود الدولة
-                      <span className="text-red-500 mr-0.5">*</span>
+                      البلد <span className="text-red-500 mr-0.5">*</span>
                     </label>
-                    <Select
-                      value={
-                        whatsappCode
-                          ? countryOptions.find((o) => o.value === whatsappCode)
-                          : null
-                      }
-                      onChange={(option) => setWhatsappCode(option.value)}
-                      options={countryOptions}
-                      placeholder="كود الدولة"
-                      styles={customStyles}
-                      menuPosition="fixed"
-                      menuPlacement="auto"
-                      isSearchable={false}
-                      formatOptionLabel={(option) => (
-                        <div className="flex items-center gap-2">
-                          <img
-                            src={`https://flagsapi.com/${option.code}/flat/32.png`}
-                            alt=""
-                            className="w-7 h-5 object-contain"
-                          />
-                          <span>{option.value}</span>
-                        </div>
-                      )}
-                      components={{ SingleValue }}
-                    />
+                    <div data-lenis-prevent>
+                      <Select
+                        value={
+                          whatsappCode
+                            ? countryOptions.find(
+                                (o) => o.value === whatsappCode
+                              )
+                            : null
+                        }
+                        onChange={(option) => {
+                          setWhatsappCode(option.value);
+                          setTimeout(() => {
+                            whatsappInputRef.current?.focus();
+                          }, 0);
+                          console.log(whatsappCode);
+                        }}
+                        options={countryOptions}
+                        placeholder="البلد"
+                        styles={customStyles}
+                        menuPosition="fixed"
+                        menuPlacement="auto"
+                        isSearchable={false}
+                        components={{ SingleValue }}
+                      />
+                    </div>
                   </div>
 
                   {/* رقم الواتساب */}
-                  <div className="w-full sm:w-[70%] md:w-[75%] lg:w-[65%] flex flex-col">
+                  <div className="w-full sm:w-[55%] flex flex-col">
                     <label className="block mb-1.5 text-sm font-semibold text-right">
                       رقم الواتساب
                       <span className="text-red-500 mr-0.5">*</span>
@@ -396,7 +428,19 @@ export default function PackagePopup({ pkg, onClose }) {
                         size={18}
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
                       />
+
+                      {/* كود الدولة – يظهر فقط بعد الاختيار */}
+                      {whatsappCode && (
+                        <span
+                          className="absolute left-3 top-1/2 -translate-y-1/2 text-sm font-medium text-gray-600 bg-gray-200 px-2 py-0.5 rounded-md"
+                          dir="ltr"
+                        >
+                          {whatsappCode}
+                        </span>
+                      )}
+
                       <input
+                        ref={whatsappInputRef}
                         type="text"
                         placeholder="رقم الواتساب"
                         value={whatsappNumber}
@@ -409,7 +453,7 @@ export default function PackagePopup({ pkg, onClose }) {
                         }
                         required
                         disabled={!whatsappCode || loading}
-                        className="w-full text-right pr-10 pl-3 py-2.5 rounded-lg outline-none bg-gray-100 placeholder:text-gray-400 disabled:opacity-60 transition-all duration-200 focus:shadow-[0_0_0_3px_rgba(205,233,78,0.45)] focus:bg-gray-50 h-full"
+                        className="disabled:cursor-not-allowed w-full text-right pr-10 pl-14 py-2.5 rounded-lg outline-none bg-gray-100 placeholder:text-gray-400 disabled:opacity-60 transition-all duration-200 focus:shadow-[0_0_0_3px_rgba(205,233,78,0.45)] focus:bg-gray-50 h-full"
                       />
                     </div>
                   </div>
@@ -418,40 +462,36 @@ export default function PackagePopup({ pkg, onClose }) {
                 {/* حقل رقم المكالمات */}
                 <div className="flex gap-3 items-start flex-col sm:flex-row sm:pt-0 pt-2.5 border-gray-300 border-t-2 border-dotted sm:border-none">
                   {/* كود الدولة */}
-                  <div className="flex-1 flex flex-col w-full">
+                  <div className="sm:w-[45%] flex flex-col w-full">
                     <label className="block mb-1.5 text-sm font-semibold text-right">
-                      كود الدولة
-                      <span className="text-red-500 mr-0.5">*</span>
+                      البلد <span className="text-red-500 mr-0.5">*</span>
                     </label>
-                    <Select
-                      value={
-                        callsCode
-                          ? countryOptions.find((o) => o.value === callsCode)
-                          : null
-                      }
-                      onChange={(option) => setCallsCode(option.value)}
-                      options={countryOptions}
-                      placeholder="كود الدولة"
-                      styles={customStyles}
-                      menuPosition="fixed"
-                      menuPlacement="auto"
-                      isSearchable={false}
-                      formatOptionLabel={(option) => (
-                        <div className="flex items-center gap-2">
-                          <img
-                            src={`https://flagsapi.com/${option.code}/flat/32.png`}
-                            alt=""
-                            className="w-7 h-5 object-contain"
-                          />
-                          <span>{option.value}</span>
-                        </div>
-                      )}
-                      components={{ SingleValue }}
-                    />
+                    <div data-lenis-prevent>
+                      <Select
+                        value={
+                          callsCode
+                            ? countryOptions.find((o) => o.value === callsCode)
+                            : null
+                        }
+                        onChange={(option) => {
+                          setCallsCode(option.value);
+                          setTimeout(() => {
+                            callsInputRef.current?.focus();
+                          }, 0);
+                        }}
+                        options={countryOptions}
+                        placeholder="البلد"
+                        styles={customStyles}
+                        menuPosition="fixed"
+                        menuPlacement="auto"
+                        isSearchable={false}
+                        components={{ SingleValue }}
+                      />
+                    </div>
                   </div>
 
                   {/* رقم المكالمات */}
-                  <div className="w-full sm:w-[70%] md:w-[75%] lg:w-[65%] flex flex-col">
+                  <div className="w-full sm:w-[55%] flex flex-col">
                     <label className="block mb-1.5 text-sm font-semibold text-right">
                       رقم المكالمات
                       <span className="text-red-500 mr-0.5">*</span>
@@ -461,7 +501,19 @@ export default function PackagePopup({ pkg, onClose }) {
                         size={18}
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
                       />
+
+                      {/* كود الدولة – يظهر فقط بعد الاختيار */}
+                      {callsCode && (
+                        <span
+                          className="absolute left-3 top-1/2 -translate-y-1/2 text-sm font-medium text-gray-600 bg-gray-200 px-2 py-0.5 rounded-md"
+                          dir="ltr"
+                        >
+                          {callsCode}
+                        </span>
+                      )}
+
                       <input
+                        ref={callsInputRef}
                         type="text"
                         placeholder="رقم المكالمات"
                         value={callsNumber}
@@ -474,7 +526,7 @@ export default function PackagePopup({ pkg, onClose }) {
                         }
                         required
                         disabled={!callsCode || loading}
-                        className="w-full text-right pr-10 pl-3 py-2.5 rounded-lg outline-none bg-gray-100 placeholder:text-gray-400 disabled:opacity-60 transition-all duration-200 focus:shadow-[0_0_0_3px_rgba(205,233,78,0.45)] focus:bg-gray-50 h-full"
+                        className="disabled:cursor-not-allowed w-full text-right pr-10 pl-14 py-2.5 rounded-lg outline-none bg-gray-100 placeholder:text-gray-400 disabled:opacity-60 transition-all duration-200 focus:shadow-[0_0_0_3px_rgba(205,233,78,0.45)] focus:bg-gray-50 h-full"
                       />
                     </div>
                   </div>
@@ -513,7 +565,7 @@ export default function PackagePopup({ pkg, onClose }) {
                   className={`mt-8 w-full py-4 rounded-2xl text-lg font-bold transition duration-200 ${
                     loading
                       ? "bg-gray-400 cursor-not-allowed text-white"
-                      : "bg-black text-white hover:bg-gray-800"
+                      : "bg-black text-white cursor-pointer"
                   }`}
                 >
                   {loading ? "جاري الإرسال ..." : "إتمام طلب الاشتراك"}

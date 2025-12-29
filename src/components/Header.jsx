@@ -80,7 +80,7 @@ export default function Header({ selectedPackage }) {
                     key={link.label}
                     onClick={() =>
                       window.lenis.scrollTo(`#${link.id}`, {
-                        duration: 1,
+                        duration: 1.5,
                         offset: -86,
                       })
                     }
@@ -115,7 +115,7 @@ export default function Header({ selectedPackage }) {
                   className="text-black w-44 py-3.5 font-bold"
                   onClick={() =>
                     window.lenis.scrollTo(`#packages`, {
-                      duration: 1,
+                      duration: 1.5,
                       offset: -86,
                     })
                   }
@@ -150,7 +150,7 @@ export default function Header({ selectedPackage }) {
                       key={link.label}
                       onClick={() => {
                         window.lenis.scrollTo(`#${link.id}`, {
-                          duration: 1,
+                          duration: 1.5,
                           offset: -357.5,
                         });
                         setOpen(!open);
@@ -186,7 +186,7 @@ export default function Header({ selectedPackage }) {
                   style={{ borderRadius: "0.4rem" }}
                   onClick={() => {
                     window.lenis.scrollTo(`#packages`, {
-                      duration: 1,
+                      duration: 1.5,
                       offset: -355,
                     });
                     setOpen(!open);

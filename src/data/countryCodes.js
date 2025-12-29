@@ -8,8 +8,8 @@ export const countryCodes = [
   { name: "فلسطين", code: "PS", dial_code: "+970" },
   { name: "العراق", code: "IQ", dial_code: "+964" },
 
-  { name: "المملكة العربية السعودية", code: "SA", dial_code: "+966" },
-  { name: "الإمارات العربية المتحدة", code: "AE", dial_code: "+971" },
+  { name: "السعودية", code: "SA", dial_code: "+966" },
+  { name: "الإمارات", code: "AE", dial_code: "+971" },
   { name: "الكويت", code: "KW", dial_code: "+965" },
   { name: "قطر", code: "QA", dial_code: "+974" },
   { name: "البحرين", code: "BH", dial_code: "+973" },
