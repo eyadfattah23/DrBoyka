@@ -5,6 +5,7 @@ import Container from "../components/Container";
 import SectionHead from "../components/SectionHead";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import Loader from "../components/Loader";
 
 // استيراد ستايلات Swiper
 import "swiper/css";
@@ -15,15 +16,17 @@ const BASE_URL = "https://drboyka.onrender.com";
 function Transformations() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [hasError, setHasError] = useState(false); // <-- فقط حالة الخطأ
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(`${BASE_URL}/api/transformations`);
+        if (!response.ok) throw new Error("Failed");
         const result = await response.json();
         setData(result);
-      } catch (error) {
-        console.error("Error fetching data:", error);
+      } catch (err) {
+        setHasError(true); // <-- لو حصل أي خطأ نخليها true
       } finally {
         setLoading(false);
       }
@@ -34,7 +37,16 @@ function Transformations() {
   let content;
 
   if (loading) {
-    content = <div className="text-center py-10">جاري التحميل...</div>;
+    content = <Loader />;
+  } else if (hasError || !data || data.length === 0) {
+    content = (
+      <div className="flex justify-center items-center flex-col">
+        <img src="/images/error-2.png" alt="error" />
+        <p className="text-2xl mt-4 font-semibold text-red-600">
+          حدث خطأ أثناء جلب البيانات!
+        </p>
+      </div>
+    );
   } else {
     content = (
       <>
@@ -160,7 +172,10 @@ function Transformations() {
     );
   }
   return (
-    <div className="w-full pt-14 pb-22 relative overflow-hidden">
+    <div
+      id="transformations"
+      className="w-full pt-14 pb-22 relative overflow-hidden"
+    >
       <img
         src="/images/serv-5.png"
         alt="serv-5"

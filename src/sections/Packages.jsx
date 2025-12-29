@@ -23,10 +23,15 @@ export default function Packages({ onSelectPackage }) {
 
   if (packagesIsLoading) {
     content = <Loader />;
-  } else if (errorFetchingPackages) {
-    content = <p>حدث خطأ أثناء جلب الباقات</p>;
-  } else if (!packages || packages.length === 0) {
-    content = <p>لا توجد باكدجات متاحة حاليا</p>;
+  } else if (errorFetchingPackages || !packages || packages.length === 0) {
+    content = (
+      <div className="flex justify-center items-center flex-col">
+        <img src="/images/error.png" alt="error" />
+        <p className="text-2xl mt-4 font-semibold text-red-600">
+          حدث خطأ أثناء جلب البيانات!
+        </p>
+      </div>
+    );
   } else {
     content = (
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-20">
@@ -127,23 +132,24 @@ export default function Packages({ onSelectPackage }) {
                 className="py-4 font-bold w-full text-white text-lg gap-3"
                 style={{ backgroundColor: "black" }}
               />
-
-              <ul className="space-y-3 mt-10 pl-2">
-                {pkg.descriptions.map((desc, idx) => (
-                  <li key={idx} className="flex gap-2 items-start">
-                    <div
-                      className="w-7 h-7 rounded-full shrink-0 flex justify-center items-center mt-0.5 text-xl"
-                      style={{
-                        backgroundColor: "var(--color-primary)",
-                        color: "white",
-                      }}
-                    >
-                      <IoMdCheckmark />
-                    </div>
-                    <span className="font-semibold text-xl">{desc}</span>
-                  </li>
-                ))}
-              </ul>
+              {pkg.descriptions.length !== 0 && (
+                <ul className="space-y-3 mt-10 pl-2">
+                  {pkg.descriptions.map((desc, idx) => (
+                    <li key={idx} className="flex gap-2 items-start">
+                      <div
+                        className="w-7 h-7 rounded-full shrink-0 flex justify-center items-center mt-0.5 text-xl"
+                        style={{
+                          backgroundColor: "var(--color-primary)",
+                          color: "white",
+                        }}
+                      >
+                        <IoMdCheckmark />
+                      </div>
+                      <span className="font-semibold text-xl">{desc}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           );
         })}

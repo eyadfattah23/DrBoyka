@@ -279,28 +279,30 @@ export default function PackagePopup({ pkg, onClose }) {
                 </p>
 
                 {/* مميزات الباقة */}
-                <ul
-                  className="space-y-3 pl-2 pb-10 mb-8"
-                  style={{ borderBottom: "1px solid rgba(153, 153, 153, 1)" }}
-                >
-                  {pkg.descriptions.map((desc, idx) => (
-                    <li key={idx} className="flex gap-2 items-start">
-                      <div
-                        className="w-5 h-5 rounded-full shrink-0 flex justify-center items-center mt-0.5"
-                        style={{
-                          backgroundColor: "var(--color-primary)",
-                          color: "white",
-                        }}
-                      >
-                        <IoMdCheckmark />
-                      </div>
-                      <span className="font-medium">{desc}</span>
-                    </li>
-                  ))}
-                </ul>
+                {pkg.descriptions.length !== 0 && (
+                  <ul className="space-y-3 pl-2 mb-8">
+                    {pkg.descriptions.map((desc, idx) => (
+                      <li key={idx} className="flex gap-2 items-start">
+                        <div
+                          className="w-5 h-5 rounded-full shrink-0 flex justify-center items-center mt-0.5"
+                          style={{
+                            backgroundColor: "var(--color-primary)",
+                            color: "white",
+                          }}
+                        >
+                          <IoMdCheckmark />
+                        </div>
+                        <span className="font-medium">{desc}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
 
                 {/* مدة الاشتراك */}
-                <p className="font-semibold mb-3">
+                <p
+                  className="font-semibold mb-3 pt-7"
+                  style={{ borderTop: "1px solid rgba(153, 153, 153, 1)" }}
+                >
                   مدة الاشتراك:{" "}
                   {selectedMonth === 1
                     ? "شهر"

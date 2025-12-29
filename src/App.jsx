@@ -19,8 +19,14 @@ function App() {
   const [selectedPackage, setSelectedPackage] = useState(null);
 
   useEffect(() => {
+    if (window.location.pathname !== "/") {
+      window.history.replaceState(null, "", "/");
+    }
+  }, []);
+
+  useEffect(() => {
     const lenis = new Lenis({
-      duration: 2,
+      duration: 1,
       smoothWheel: true,
     });
 
@@ -44,11 +50,7 @@ function App() {
 
   return (
     <>
-      <ToastContainer
-        position="top-left"
-        rtl={true}
-        theme="colored"
-      />
+      <ToastContainer position="top-left" rtl={true} theme="colored" />
       <PackagesProvider>
         <div
           style={{ backgroundColor: "var(--color-bg)", position: "relative" }}
@@ -73,7 +75,7 @@ function App() {
               <Services /> {/* واخد id services */}
               <Video />
               <Who />
-              <Transformations />
+              <Transformations /> {/* واخد id transformations*/}
               {/* واخد id packages*/}
               <Packages onSelectPackage={setSelectedPackage} />
               <Faq />
