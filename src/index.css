@@ -67,3 +67,20 @@ body {
 .custom-btn:hover {
   background-color: var(--color-primary); /* لون الزر عند hover */
 }
+
+@keyframes pulseSkew {
+  0% {
+    transform: rotate(20deg) skew(0deg, 0deg) scale(1);
+  }
+  50% {
+    transform: rotate(20deg) skew(6deg, 2deg) scale(1.08);
+  }
+  100% {
+    transform: rotate(20deg) skew(0deg, 0deg) scale(1);
+  }
+}
+
+.pulse-skew {
+  animation: pulseSkew 1.6s ease-in-out infinite;
+  transform-origin: center;
+}
