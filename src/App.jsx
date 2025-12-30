@@ -59,10 +59,7 @@ function App() {
 
           {/* لو فيه باقة مختارة، اعرض PackagePopup بس */}
           {selectedPackage ? (
-            <PackagePopup
-              pkg={selectedPackage}
-              onClose={() => setSelectedPackage(null)}
-            />
+            <PackagePopup pkg={selectedPackage} />
           ) : (
             // لو مفيش باقة مختارة، اعرض المحتوى العادي
             <>

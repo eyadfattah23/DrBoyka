@@ -6,6 +6,7 @@ import { MdOutlineCloseFullscreen } from "react-icons/md";
 import { MdOpenInFull } from "react-icons/md";
 import { IoIosArrowDropdown } from "react-icons/io";
 import { IoIosArrowDropup } from "react-icons/io";
+import { MotionDiv } from "../animations/motionPresets";
 
 const dataColumn1 = [
   {
@@ -39,39 +40,41 @@ const dataColumn2 = [
 
 function AccordionItem({ item, isOpen, onClick }) {
   return (
-    <div
-      className="bg-white rounded-2xl overflow-hidden xs:p-2 md:p-5"
-      style={{
-        boxShadow: "0px 24.56px 32.74px -14.73px rgba(149, 149, 149, 0.25)",
-      }}
-    >
-      <button
-        onClick={onClick}
-        className="w-full text-left p-4 flex justify-between items-center cursor-pointer"
+    <MotionDiv variant="slideXRight">
+      <div
+        className="bg-white rounded-2xl overflow-hidden xs:p-2 md:p-5"
+        style={{
+          boxShadow: "0px 24.56px 32.74px -14.73px rgba(149, 149, 149, 0.25)",
+        }}
       >
-        <span className="xs:font-medium md:font-bold xs:text-lg md:text-xl">
-          {item.question}
-        </span>
-        <span className="text-2xl md:text-3xl">
-          {isOpen ? <IoIosArrowDropup /> : <IoIosArrowDropdown />}
-        </span>
-      </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            key="content"
-            initial={{ height: 0 }}
-            animate={{ height: "auto" }}
-            exit={{ height: 0 }}
-            transition={{ duration: 0.01 }}
-            className="p-4 pl-12 xs:text-lg md:text-xl text-justify"
-            style={{ color: "rgba(54, 48, 73, 1)" }}
-          >
-            {item.answer}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+        <button
+          onClick={onClick}
+          className="w-full text-left p-4 flex justify-between items-center cursor-pointer"
+        >
+          <span className="xs:font-medium md:font-bold xs:text-lg md:text-xl">
+            {item.question}
+          </span>
+          <span className="text-2xl md:text-3xl">
+            {isOpen ? <IoIosArrowDropup /> : <IoIosArrowDropdown />}
+          </span>
+        </button>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              key="content"
+              initial={{ height: 0 }}
+              animate={{ height: "auto" }}
+              exit={{ height: 0 }}
+              transition={{ duration: 0.01 }}
+              className="p-4 pl-12 xs:text-lg md:text-xl text-justify"
+              style={{ color: "rgba(54, 48, 73, 1)" }}
+            >
+              {item.answer}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </MotionDiv>
   );
 }
 

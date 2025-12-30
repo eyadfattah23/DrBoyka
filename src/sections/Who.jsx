@@ -106,6 +106,7 @@ export default function Who() {
             visibleOverride={{
               transition: { duration: 0.7 },
             }}
+            overrideProps={{ viewport: { once: true, amount: 0.6 } }}
           >
             <div className="shrink">
               <img

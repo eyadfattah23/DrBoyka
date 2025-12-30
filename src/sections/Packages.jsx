@@ -172,8 +172,8 @@ export default function Packages({ onSelectPackage }) {
                     <MotionDiv
                       variant="scaleFade"
                       visibleOverride={{
-                        viewport: { once: true, amount: 0.7 },
-                        transition: { duration: 0.7, delay: index * 0.2 },
+                        viewport: { once: true, amount: 0.6 },
+                        transition: { duration: 0.6, delay: index * 0.15 },
                       }}
                     >
                       <li key={idx} className="flex gap-2 items-start">
