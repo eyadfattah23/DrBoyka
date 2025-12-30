@@ -14,6 +14,8 @@ export default function Header({ selectedPackage }) {
     { label: "الباقات", id: "packages" },
   ];
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState(null);
+  const ACTIVE_OFFSET = 300;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +24,32 @@ export default function Header({ selectedPackage }) {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleScrollSpy = () => {
+      const scrollPosition = window.scrollY;
+
+      let currentSection = null;
+
+      navLinks.forEach((link) => {
+        const section = document.getElementById(link.id);
+        if (!section) return;
+
+        const top = section.offsetTop - ACTIVE_OFFSET;
+        const bottom = section.offsetTop + section.offsetHeight - ACTIVE_OFFSET;
+
+        if (scrollPosition >= top && scrollPosition < bottom) {
+          currentSection = link.id;
+        }
+      });
+
+      setActiveSection(currentSection);
+    };
+
+    window.addEventListener("scroll", handleScrollSpy);
+    handleScrollSpy();
+    return () => window.removeEventListener("scroll", handleScrollSpy);
   }, []);
 
   return (
@@ -74,22 +102,37 @@ export default function Header({ selectedPackage }) {
             {selectedPackage ? (
               ""
             ) : (
-              <nav className="hidden lg:flex items-center gap-12">
-                {navLinks.map((link) => (
-                  <div
-                    key={link.label}
-                    onClick={() =>
-                      window.lenis.scrollTo(`#${link.id}`, {
-                        duration: 1.5,
-                        offset: -86,
-                      })
-                    }
-                    className="font-medium transition-all duration-300 cursor-pointer"
-                    style={{ color: isScrolled ? "" : "white" }}
-                  >
-                    {link.label}
-                  </div>
-                ))}
+              <nav className="hidden lg:flex items-center gap-6">
+                {navLinks.map((link) => {
+                  const isActive = activeSection === link.id;
+
+                  return (
+                    <div
+                      key={link.label}
+                      onClick={() =>
+                        window.lenis.scrollTo(`#${link.id}`, {
+                          duration: 1.5,
+                          offset: -86,
+                        })
+                      }
+                      className="transition-all duration-300 cursor-pointer px-4"
+                      style={{
+                        color:
+                          isScrolled && isActive
+                            ? "rgb(178, 202, 60)"
+                            : isScrolled && !isActive
+                            ? "black"
+                            : !isScrolled && isActive
+                            ? "var(--color-primary)"
+                            : "white",
+                        fontWeight: isActive ? "700" : "600",
+                        transform: isActive ? "scale(1.05)" : "scale(1)",
+                      }}
+                    >
+                      {link.label}
+                    </div>
+                  );
+                })}
               </nav>
             )}
 
@@ -145,22 +188,36 @@ export default function Header({ selectedPackage }) {
                 ""
               ) : (
                 <>
-                  {navLinks.map((link) => (
-                    <div
-                      key={link.label}
-                      onClick={() => {
-                        window.lenis.scrollTo(`#${link.id}`, {
-                          duration: 1.5,
-                          offset: -357.5,
-                        });
-                        setOpen(!open);
-                      }}
-                      className="font-medium transition-all duration-300"
-                      style={{ color: isScrolled ? "" : "white" }}
-                    >
-                      {link.label}
-                    </div>
-                  ))}
+                  {navLinks.map((link) => {
+                    const isActive = activeSection === link.id;
+                    return (
+                      <div
+                        key={link.label}
+                        onClick={() => {
+                          window.lenis.scrollTo(`#${link.id}`, {
+                            duration: 1.5,
+                            offset: -392.5,
+                          });
+                          setOpen(false);
+                        }}
+                        className="transition-all duration-300 px-4 py-1 rounded-full"
+                        style={{
+                          color:
+                            isScrolled && isActive
+                              ? "rgb(178, 202, 60)"
+                              : isScrolled && !isActive
+                              ? "black"
+                              : !isScrolled && isActive
+                              ? "var(--color-primary)"
+                              : "white",
+                          fontWeight: isActive ? "700" : "500",
+                          fontSize: isActive ? "18px" : "16px",
+                        }}
+                      >
+                        {link.label}
+                      </div>
+                    );
+                  })}
                 </>
               )}
 
