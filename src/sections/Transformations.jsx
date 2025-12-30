@@ -15,16 +15,18 @@ import { MotionDiv } from "../animations/motionPresets";
 const BASE_URL = "https://drboyka.onrender.com";
 
 function Transformations() {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  //const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [hasError, setHasError] = useState(false); // <-- فقط حالة الخطأ
 
-  useEffect(() => {
+  /*useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await fetch(`${BASE_URL}/api/transformations`);
         if (!response.ok) throw new Error("Failed");
         const result = await response.json();
+        console.log(result);
         setData(result);
       } catch (err) {
         setHasError(true); // <-- لو حصل أي خطأ نخليها true
@@ -33,7 +35,59 @@ function Transformations() {
       }
     };
     fetchData();
-  }, []);
+  }, []);*/
+
+  const data = [
+    {
+      after_image: "/images/after.png",
+      before_image: "/images/before.png",
+      duration: "شهرين",
+      id: 1,
+      name: "أحمد محمد",
+    },
+    {
+      after_image: "/images/after.png",
+      before_image: "/images/before.png",
+      duration: "3 أشهر",
+      id: 2,
+      name: "كريم سامح",
+    },
+    {
+      after_image: "/images/after.png",
+      before_image: "/images/before.png",
+      duration: "45 يوم",
+      id: 3,
+      name: "محمود علي",
+    },
+    {
+      after_image: "/images/after.png",
+      before_image: "/images/before.png",
+      duration: "4 أشهر",
+      id: 4,
+      name: "يوسف حسام",
+    },
+    {
+      after_image: "/images/after.png",
+      before_image: "/images/before.png",
+      duration: "6 أسابيع",
+      id: 5,
+      name: "إسلام فتحي",
+    },
+    {
+      after_image: "/images/after.png",
+      before_image: "/images/before.png",
+      duration: "5 أشهر",
+      id: 6,
+      name: "عمر خالد",
+    },
+    {
+      after_image: "/images/after.png",
+      before_image: "/images/before.png",
+      duration: "90 يوم",
+      id: 7,
+      name: "حسام رمضان",
+    },
+  ];
 
   let content;
 
