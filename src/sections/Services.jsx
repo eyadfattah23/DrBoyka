@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "../components/Container";
 import SectionHead from "../components/SectionHead";
+import { MotionDiv } from "../animations/motionPresets";
 
 const items = [
   {
@@ -58,27 +59,31 @@ export default function Services() {
           "
         >
           {items.map((item, idx) => (
-            <div
-              key={idx}
-              className="flex flex-col sm:items-start sm:text-right items-center text-center px-2.5 pt-2.5 pb-8 rounded-3xl shadow-sm relative"
-              style={{
-                BoxShadow: "0px 4px 200px 0px rgba(0, 0, 0, 0.1)",
-                backgroundColor: "white",
-              }}
-            >
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full object-fill mb-6"
-              />
-              <h3
-                className="text-xl font-semibold mb-2"
-                style={{ color: "rgba(26, 26, 26, 1)" }}
+            <MotionDiv variant="scaleZ">
+              <div
+                key={idx}
+                className="flex flex-col sm:items-start sm:text-right items-center text-center px-2.5 pt-2.5 pb-8 rounded-3xl shadow-sm relative"
+                style={{
+                  BoxShadow: "0px 4px 200px 0px rgba(0, 0, 0, 0.1)",
+                  backgroundColor: "white",
+                }}
               >
-                {item.title}
-              </h3>
-              <p style={{ color: "rgba(77, 77, 77, 1)" }}>{item.description}</p>
-            </div>
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full object-fill mb-6"
+                />
+                <h3
+                  className="text-xl font-semibold mb-2"
+                  style={{ color: "rgba(26, 26, 26, 1)" }}
+                >
+                  {item.title}
+                </h3>
+                <p style={{ color: "rgba(77, 77, 77, 1)" }}>
+                  {item.description}
+                </p>
+              </div>
+            </MotionDiv>
           ))}
         </div>
       </Container>

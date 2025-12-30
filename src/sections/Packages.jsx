@@ -7,6 +7,7 @@ import Button from "../components/Button";
 import Arrow from "../components/Arrow";
 import { IoMdCheckmark } from "react-icons/io";
 import Lenis from "@studio-freight/lenis";
+import { MotionDiv } from "../animations/motionPresets";
 
 export default function Packages({ onSelectPackage }) {
   const { packagesIsLoading, packages, errorFetchingPackages } = usePackages();
@@ -53,100 +54,141 @@ export default function Packages({ onSelectPackage }) {
                   : "white",
               }}
             >
-              <h2 className="text-3xl font-semibold mb-1.5">{pkg.name}</h2>
-              <p
-                style={{ color: "rgba(102, 102, 102, 1)" }}
-                className="text-lg font-normal mb-8"
-              >
-                {pkg.short_description}
-              </p>
-
-              <div className="mb-5">
-                {selectedMonth === 1 && (
-                  <div>
-                    <p className="font-bold text-2xl">
-                      {pkg.one_month_price_after_discount} جنيه
-                    </p>
-                    <p className="line-through text-gray-500 font-semibold text-[0.95rem]">
-                      {pkg.one_month_price_before_discount} جنيه
-                    </p>
-                  </div>
-                )}
-                {selectedMonth === 6 && (
-                  <div>
-                    <p className="font-bold text-2xl">
-                      {pkg.six_month_price_after_discount} جنيه
-                    </p>
-                    <p className="line-through text-gray-500 font-semibold text-[0.95rem]">
-                      {pkg.six_month_price_before_discount} جنيه
-                    </p>
-                  </div>
-                )}
-                {selectedMonth === 12 && (
-                  <div>
-                    <p className="font-bold text-2xl">
-                      {pkg.twelve_month_price_after_discount} جنيه
-                    </p>
-                    <p className="line-through text-gray-500 font-semibold text-[0.95rem]">
-                      {pkg.twelve_month_price_before_discount} جنيه
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              <div className="flex gap-2 my-2 mb-12">
-                {[1, 6, 12].map((month) => (
-                  <button
-                    key={month}
-                    className={`pr-4 pl-4.5 pt-0.5 pb-2 rounded-lg ${
-                      selectedMonth !== month ? "hover:bg-[#def867b0]" : ""
-                    }`}
-                    style={{
-                      border:
-                        selectedMonth !== month
-                          ? "1px solid rgba(204, 204, 204, 1)"
-                          : "",
-                      background:
-                        selectedMonth === month ? "var(--color-primary)" : "",
-                      cursor: selectedMonth === month ? "" : "pointer",
-                    }}
-                    onClick={() => handleMonthChange(pkg.id, month)}
-                  >
-                    {month === 1 ? "شهر" : month === 6 ? "6 شهور" : "12 شهر"}
-                  </button>
-                ))}
-              </div>
-
-              <Button
-                text="الإشتراك فى الباقة"
-                leftComponent={<Arrow backgroundColor={"white"} />}
-                onClick={() => {
-                  onSelectPackage({
-                    ...pkg,
-                    selectedMonth,
-                  });
-                  window.lenis.scrollTo(0, {
-                    duration: 0.5,
-                  });
+              <MotionDiv
+                variant="scaleFade"
+                visibleOverride={{
+                  viewport: { once: true, amount: 1 },
+                  transition: { duration: 1 },
                 }}
-                className="py-4 font-bold w-full text-white text-lg gap-3"
-                style={{ backgroundColor: "black" }}
-              />
+              >
+                <h2 className="text-3xl font-semibold mb-1.5">{pkg.name}</h2>
+              </MotionDiv>
+              <MotionDiv
+                variant="scaleFade"
+                visibleOverride={{
+                  viewport: { once: true, amount: 1 },
+                  transition: { duration: 1 },
+                }}
+              >
+                <p
+                  style={{ color: "rgba(102, 102, 102, 1)" }}
+                  className="text-lg font-normal mb-8"
+                >
+                  {pkg.short_description}
+                </p>
+              </MotionDiv>
+
+              <MotionDiv
+                variant="scaleFade"
+                visibleOverride={{
+                  viewport: { once: true, amount: 1 },
+                  transition: { duration: 1 },
+                }}
+              >
+                <div className="mb-5">
+                  {selectedMonth === 1 && (
+                    <div>
+                      <p className="font-bold text-2xl">
+                        {pkg.one_month_price_after_discount} جنيه
+                      </p>
+                      <p className="line-through text-gray-500 font-semibold text-[0.95rem]">
+                        {pkg.one_month_price_before_discount} جنيه
+                      </p>
+                    </div>
+                  )}
+                  {selectedMonth === 6 && (
+                    <div>
+                      <p className="font-bold text-2xl">
+                        {pkg.six_month_price_after_discount} جنيه
+                      </p>
+                      <p className="line-through text-gray-500 font-semibold text-[0.95rem]">
+                        {pkg.six_month_price_before_discount} جنيه
+                      </p>
+                    </div>
+                  )}
+                  {selectedMonth === 12 && (
+                    <div>
+                      <p className="font-bold text-2xl">
+                        {pkg.twelve_month_price_after_discount} جنيه
+                      </p>
+                      <p className="line-through text-gray-500 font-semibold text-[0.95rem]">
+                        {pkg.twelve_month_price_before_discount} جنيه
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex gap-2 my-2 mb-12">
+                  {[1, 6, 12].map((month) => (
+                    <button
+                      key={month}
+                      className={`pr-4 pl-4.5 pt-0.5 pb-2 rounded-lg ${
+                        selectedMonth !== month ? "hover:bg-[#def867b0]" : ""
+                      }`}
+                      style={{
+                        border:
+                          selectedMonth !== month
+                            ? "1px solid rgba(204, 204, 204, 1)"
+                            : "",
+                        background:
+                          selectedMonth === month ? "var(--color-primary)" : "",
+                        cursor: selectedMonth === month ? "" : "pointer",
+                      }}
+                      onClick={() => handleMonthChange(pkg.id, month)}
+                    >
+                      {month === 1 ? "شهر" : month === 6 ? "6 شهور" : "12 شهر"}
+                    </button>
+                  ))}
+                </div>
+              </MotionDiv>
+
+              <MotionDiv
+                variant="slideXRight"
+                visibleOverride={{
+                  viewport: { once: true, amount: 1 },
+                  transition: { duration: 1 },
+                }}
+              >
+                <Button
+                  text="الإشتراك فى الباقة"
+                  leftComponent={<Arrow backgroundColor={"white"} />}
+                  onClick={() => {
+                    onSelectPackage({
+                      ...pkg,
+                      selectedMonth,
+                    });
+                    window.lenis.scrollTo(0, {
+                      duration: 0.5,
+                    });
+                  }}
+                  className="py-4 font-bold w-full text-white text-lg gap-3"
+                  style={{ backgroundColor: "black" }}
+                />
+              </MotionDiv>
+
               {pkg.descriptions.length !== 0 && (
                 <ul className="space-y-3 mt-10 pl-2">
                   {pkg.descriptions.map((desc, idx) => (
-                    <li key={idx} className="flex gap-2 items-start">
-                      <div
-                        className="w-7 h-7 rounded-full shrink-0 flex justify-center items-center mt-0.5 text-xl"
-                        style={{
-                          backgroundColor: "var(--color-primary)",
-                          color: "white",
-                        }}
-                      >
-                        <IoMdCheckmark />
-                      </div>
-                      <span className="font-semibold text-xl">{desc}</span>
-                    </li>
+                    <MotionDiv
+                      variant="scaleFade"
+                      visibleOverride={{
+                        viewport: { once: true, amount: 0.7 },
+                        transition: { duration: 0.7, delay: index * 0.2 },
+                      }}
+                    >
+                      <li key={idx} className="flex gap-2 items-start">
+                        <div
+                          className="w-7 h-7 rounded-full shrink-0 flex justify-center items-center mt-0.5 text-xl"
+                          style={{
+                            backgroundColor: "var(--color-primary)",
+                            color: "white",
+                          }}
+                        >
+                          <IoMdCheckmark />
+                        </div>
+                        <span className="font-semibold text-xl">{desc}</span>
+                      </li>
+                    </MotionDiv>
                   ))}
                 </ul>
               )}

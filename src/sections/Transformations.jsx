@@ -10,6 +10,7 @@ import Loader from "../components/Loader";
 // استيراد ستايلات Swiper
 import "swiper/css";
 import "swiper/css/navigation";
+import { MotionDiv } from "../animations/motionPresets";
 
 const BASE_URL = "https://drboyka.onrender.com";
 
@@ -49,7 +50,10 @@ function Transformations() {
     );
   } else {
     content = (
-      <>
+      <MotionDiv
+        variant="scaleFade"
+        visibleOverride={{ delay: 1, transition: { duration: 1 } }}
+      >
         <div className="max-w-7xl mx-auto px-4 relative group">
           {/* Swiper Component */}
           <Swiper
@@ -168,7 +172,7 @@ function Transformations() {
             display: none !important;
           }
         `}</style>
-      </>
+      </MotionDiv>
     );
   }
   return (
