@@ -80,21 +80,84 @@ export default function Header({ selectedPackage, setSelectedPackage }) {
           <div className="flex items-center flex-row-reverse lg:flex-row justify-between py-4">
             {/* Logo */}
             <div
-              className="text-2xl"
+              className="text-2xl relative overflow-hidden"
               style={{
                 fontFamily: "Bruno Ace SC",
               }}
             >
-              <span style={{ color: isScrolled ? "" : "#ffffff" }}>Bo</span>
               <span
+                className="inline-block"
                 style={{
                   color: isScrolled
                     ? "rgb(178, 202, 60)"
                     : "var(--color-primary)",
+                  animation: "waveLoop 10s ease-in-out infinite",
+                  animationDelay: "0.4s",
                 }}
               >
-                yka
+                a
               </span>
+              <span
+                className="inline-block"
+                style={{
+                  color: isScrolled
+                    ? "rgb(178, 202, 60)"
+                    : "var(--color-primary)",
+                  animation: "waveLoop 10s ease-in-out infinite",
+                  animationDelay: "0.3s",
+                }}
+              >
+                k
+              </span>
+              <span
+                className="inline-block"
+                style={{
+                  color: isScrolled
+                    ? "rgb(178, 202, 60)"
+                    : "var(--color-primary)",
+                  animation: "waveLoop 10s ease-in-out infinite",
+                  animationDelay: "0.2s",
+                }}
+              >
+                y
+              </span>
+              <span
+                className="inline-block"
+                style={{
+                  color: isScrolled ? "" : "#ffffff",
+                  animation: "waveLoop 10s ease-in-out infinite",
+                  animationDelay: "0.1s",
+                }}
+              >
+                o
+              </span>
+              <span
+                className="inline-block"
+                style={{
+                  color: isScrolled ? "" : "#ffffff",
+                  animation: "waveLoop 10s ease-in-out infinite",
+                  animationDelay: "0s",
+                }}
+              >
+                B
+              </span>
+
+              <style jsx>{`
+                @keyframes waveLoop {
+                  0% {
+                    transform: translateY(0px) scale(1);
+                  }
+                  2.5% {
+                    transform: translateY(-5px) scale(1.1);
+                  }
+                  5% {
+                    transform: translateY(0px) scale(1);
+                  }
+                  100% {
+                    transform: translateY(0px) scale(1);
+                  }
+                }
+              `}</style>
             </div>
 
             {/* Nav links - desktop */}
@@ -143,6 +206,7 @@ export default function Header({ selectedPackage, setSelectedPackage }) {
                   leftComponent={
                     <Arrow backgroundColor={"rgba(255, 255, 255, 0.75)"} />
                   }
+                  animateLeft="slide"
                   className="text-black w-44 py-3.5 font-bold"
                   onClick={() => setSelectedPackage(null)}
                 />
@@ -154,6 +218,7 @@ export default function Header({ selectedPackage, setSelectedPackage }) {
                   leftComponent={
                     <Arrow backgroundColor={"rgba(255, 255, 255, 0.75)"} />
                   }
+                  animateLeft="slide"
                   className="text-black w-44 py-3.5 font-bold"
                   onClick={() =>
                     window.lenis.scrollTo(`#packages`, {
@@ -226,6 +291,7 @@ export default function Header({ selectedPackage, setSelectedPackage }) {
                   leftComponent={
                     <Arrow backgroundColor={"rgba(255, 255, 255, 0.75)"} />
                   }
+                  animateLeft="slide"
                   className="text-black w-full sm:w-60 py-3.5 font-medium"
                   style={{ borderRadius: "0.4rem" }}
                   onClick={() => {
@@ -239,6 +305,7 @@ export default function Header({ selectedPackage, setSelectedPackage }) {
                   leftComponent={
                     <Arrow backgroundColor={"rgba(255, 255, 255, 0.75)"} />
                   }
+                  animateLeft="slide"
                   className="text-black w-full sm:w-60 py-3.5 font-medium"
                   style={{ borderRadius: "0.4rem" }}
                   onClick={() => {

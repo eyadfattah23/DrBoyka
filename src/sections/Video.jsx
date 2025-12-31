@@ -120,7 +120,7 @@ const Video = () => {
 
   return (
     <div
-      className="pt-14 pb-22"
+      className="pt-14 pb-22 overflow-hidden"
       style={{
         backgroundImage: "url(/images/video-bg.png)",
         backgroundSize: "cover",

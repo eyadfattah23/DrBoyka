@@ -4,6 +4,7 @@ import Container from "../components/Container.jsx";
 import { TiArrowLeftThick } from "react-icons/ti";
 import Arrow from "../components/arrow.jsx";
 import { MotionDiv } from "../animations/MotionPresets.jsx";
+import TypeWriter from "../animations/TypeWriter.jsx";
 
 export default function Hero() {
   return (
@@ -26,7 +27,7 @@ export default function Hero() {
         <MotionDiv variant="scaleZ">
           <div className="flex flex-col text-center xl:text-right z-10 relative">
             <div
-              className="text-blue-600 font-semibold mb-4 w-fit p-4 rounded-4xl flex items-center justify-center gap-2 xl:mx-0 mx-auto"
+              className="font-semibold mb-4 w-fit p-4 rounded-4xl flex items-center justify-center gap-2 xl:mx-0 mx-auto"
               style={{
                 background: "rgba(217, 250, 43, 0.18)",
                 color: "var(--color-primary)",
@@ -37,7 +38,28 @@ export default function Hero() {
                 src="/images/flag.png"
                 alt="Rocket"
                 className="w-9 scale-x-[-1]"
+                style={{
+                  animation: "flagWave 2s ease-in-out infinite",
+                }}
               />
+
+              <style jsx>{`
+                @keyframes flagWave {
+                  0%,
+                  100% {
+                    transform: rotate(0deg) translateY(0px);
+                  }
+                  25% {
+                    transform: rotate(-3deg) translateY(-2px);
+                  }
+                  50% {
+                    transform: rotate(2deg) translateY(0px);
+                  }
+                  75% {
+                    transform: rotate(-2deg) translateY(-1px);
+                  }
+                }
+              `}</style>
             </div>
             <p
               className="text-white text-3xl md:text-4xl xl:text-5xl font-bold mb-4 mx-auto xl:mx-0 max-w-140 xl:max-w-180"
@@ -48,11 +70,17 @@ export default function Hero() {
               إنت كده بدأت رحلة التغيير للأحسن في جسمك وصحتك
             </p>
             <p
-              className="mb-10 text-xl font-medium"
+              className="mb-10 text-xl font-medium h-15 md:h-8"
               style={{ color: "rgba(230, 230, 230, 1)" }}
             >
-              اشترك حالاً وارمي الكسل على جنب - في أقل من شهر هتشوف نتايج تخليك
-              فخور بنفسك!
+              <TypeWriter
+                speed={60} // سرعة الكتابة (أقل = أسرع)
+                delay={1.5} // تأخير قبل البدء بالثواني
+                onComplete={() => {}}
+              >
+                اشترك حالاً وارمي الكسل على جنب - في أقل من شهر هتشوف نتايج
+                تخليك فخور بنفسك!
+              </TypeWriter>
             </p>
 
             <div className="flex items-center flex-row flex-wrap justify-center xl:justify-start gap-4">
@@ -61,6 +89,7 @@ export default function Hero() {
                 leftComponent={
                   <Arrow backgroundColor={"rgba(255, 255, 255, 0.75)"} />
                 }
+                animateLeft="slide"
                 className="text-black w-53 py-4 font-bold hidden lg:flex"
                 onClick={() =>
                   window.lenis.scrollTo(`#packages`, {
@@ -74,6 +103,7 @@ export default function Hero() {
                 leftComponent={
                   <Arrow backgroundColor={"rgba(255, 255, 255, 0.75)"} />
                 }
+                animateLeft="slide"
                 className="text-black w-53 py-4 font-bold flex lg:hidden"
                 onClick={() =>
                   window.lenis.scrollTo(`#packages`, {
@@ -92,6 +122,7 @@ export default function Hero() {
                     }}
                   />
                 }
+                animateLeft="pulse"
                 className="text-black w-53 py-4 font-bold "
               />
             </div>

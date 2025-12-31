@@ -5,7 +5,7 @@ function Footer() {
   return (
     <div
       dir="ltr"
-      className="text-white pt-8 pb-6 relative"
+      className="text-white pt-8 pb-6 relative overflow-hidden"
       style={{ backgroundColor: "rgba(26, 26, 26, 1)" }}
     >
       <Container>

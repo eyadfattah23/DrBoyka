@@ -152,6 +152,8 @@ export default function Packages({ onSelectPackage }) {
                 <Button
                   text="الإشتراك فى الباقة"
                   leftComponent={<Arrow backgroundColor={"white"} />}
+                  animateLeft="slide"
+                  animationDelay={index * 8}
                   onClick={() => {
                     onSelectPackage({
                       ...pkg,
