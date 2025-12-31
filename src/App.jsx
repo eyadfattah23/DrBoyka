@@ -46,7 +46,7 @@ function App() {
     window.lenis.scrollTo(0, {
       duration: 0.5,
     });
-  }, []);
+  }, [selectedPackage]);
 
   return (
     <>
@@ -55,11 +55,17 @@ function App() {
         <div
           style={{ backgroundColor: "var(--color-bg)", position: "relative" }}
         >
-          <Header selectedPackage={selectedPackage} />
+          <Header
+            selectedPackage={selectedPackage}
+            setSelectedPackage={setSelectedPackage}
+          />
 
           {/* لو فيه باقة مختارة، اعرض PackagePopup بس */}
           {selectedPackage ? (
-            <PackagePopup pkg={selectedPackage} />
+            <PackagePopup
+              pkg={selectedPackage}
+              setSelectedPackage={setSelectedPackage}
+            />
           ) : (
             // لو مفيش باقة مختارة، اعرض المحتوى العادي
             <>

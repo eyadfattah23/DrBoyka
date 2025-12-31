@@ -28,6 +28,10 @@ body {
   --color-primary: rgba(217, 252, 35, 1);
 }
 
+.swal2-container {
+  backdrop-filter: blur(4px); /* قوة البلور */
+}
+
 /* الخط العام للصندوق */
 .custom-popup {
   font-family: "Norsal", sans-serif; /* الخط اللي عايزه */

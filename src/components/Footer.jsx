@@ -3,7 +3,11 @@ import { MotionDiv } from "../animations/motionPresets";
 
 function Footer() {
   return (
-    <div dir="ltr" className="text-white pt-8 pb-6">
+    <div
+      dir="ltr"
+      className="text-white pt-8 pb-6 relative"
+      style={{ backgroundColor: "rgba(26, 26, 26, 1)" }}
+    >
       <Container>
         <div className="flex justify-between items-center border-b-2 border-white pb-4 flex-col gap-3.5 md:flex-row">
           <div className="order-1 md:order-0">

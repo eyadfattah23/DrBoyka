@@ -11,7 +11,7 @@ const defaultProps = {
 export const variants = {
   fade: {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 1.2, ease } },
+    visible: { opacity: 1, transition: { duration: 2.2, ease } },
   },
   scaleFade: {
     hidden: { opacity: 0, scale: 0.9 },

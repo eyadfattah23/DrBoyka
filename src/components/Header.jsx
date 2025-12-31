@@ -5,7 +5,7 @@ import Button from "./Button";
 import Arrow from "./arrow";
 import { BiBorderRadius } from "react-icons/bi";
 
-export default function Header({ selectedPackage }) {
+export default function Header({ selectedPackage, setSelectedPackage }) {
   const [open, setOpen] = useState(false);
   const navLinks = [
     { label: "الرئيسية", id: "home" },
@@ -50,7 +50,7 @@ export default function Header({ selectedPackage }) {
     window.addEventListener("scroll", handleScrollSpy);
     handleScrollSpy();
     return () => window.removeEventListener("scroll", handleScrollSpy);
-  }, []);
+  }, [selectedPackage]);
 
   return (
     <header
@@ -80,11 +80,10 @@ export default function Header({ selectedPackage }) {
           <div className="flex items-center flex-row-reverse lg:flex-row justify-between py-4">
             {/* Logo */}
             <div
-              className="text-2xl cursor-pointer"
+              className="text-2xl"
               style={{
                 fontFamily: "Bruno Ace SC",
               }}
-              onClick={() => window.location.reload()}
             >
               <span style={{ color: isScrolled ? "" : "#ffffff" }}>Bo</span>
               <span
@@ -145,7 +144,7 @@ export default function Header({ selectedPackage }) {
                     <Arrow backgroundColor={"rgba(255, 255, 255, 0.75)"} />
                   }
                   className="text-black w-44 py-3.5 font-bold"
-                  onClick={() => window.location.reload()}
+                  onClick={() => setSelectedPackage(null)}
                 />
               </div>
             ) : (
@@ -230,7 +229,8 @@ export default function Header({ selectedPackage }) {
                   className="text-black w-full sm:w-60 py-3.5 font-medium"
                   style={{ borderRadius: "0.4rem" }}
                   onClick={() => {
-                    window.location.reload();
+                    setSelectedPackage(null);
+                    setOpen(false);
                   }}
                 />
               ) : (
