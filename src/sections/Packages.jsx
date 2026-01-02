@@ -79,7 +79,7 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
 
                     <div
                       key={pkg.id}
-                      className="package-box px-5 pt-8 pb-9 rounded-4xl transition-transform relative overflow-hidden"
+                      className="h-full package-box px-5 pt-8 pb-9 rounded-4xl transition-transform relative overflow-hidden"
                       style={{
                         border: pkg.is_special ? "" : "1px solid #E0E0E0",
                         boxShadow: pkg.is_special
