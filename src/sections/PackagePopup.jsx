@@ -240,9 +240,7 @@ export default function PackagePopup({
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      <FogBackground />
-
+    <div className="relative min-h-screen">
       <div className="relative z-10 pt-8 pb-9 lg:pt-18 lg:pb-28 flex items-center">
         <Container>
           <div className="relative w-full xl:w-[85%] mx-auto">

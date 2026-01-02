@@ -79,7 +79,12 @@ function App() {
       <ToastContainer position="top-left" rtl={true} theme="colored" />
       <PackagesProvider>
         <div
-          style={{ backgroundColor: "var(--color-bg)", position: "relative" }}
+          style={{
+            background: selectedPackage
+              ? "linear-gradient(360deg, rgba(217, 252, 35, 0.8) 0%, rgba(217, 252, 35, 0.5) 100%)"
+              : "var(--color-bg)",
+            position: "relative",
+          }}
         >
           <Header
             selectedPackage={selectedPackage}

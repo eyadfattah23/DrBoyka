@@ -51,6 +51,7 @@ export function PackagesProvider({ children }) {
       twelve_month_price_after_discount: "3500.00",
       is_active: true,
       updated_at: "2025-12-23T20:53:08.278586+02:00",
+      is_special: false,
     },
 
     {
@@ -72,6 +73,7 @@ export function PackagesProvider({ children }) {
       twelve_month_price_after_discount: "5200.00",
       is_active: true,
       updated_at: "2025-12-24T18:20:11.112233+02:00",
+      is_special: false,
     },
     {
       id: 5,
@@ -93,6 +95,7 @@ export function PackagesProvider({ children }) {
       twelve_month_price_after_discount: "7000.00",
       is_active: true,
       updated_at: "2025-12-26T14:45:32.445566+02:00",
+      is_special: true,
     },
     {
       id: 4,
@@ -113,6 +116,7 @@ export function PackagesProvider({ children }) {
       twelve_month_price_after_discount: "5200.00",
       is_active: true,
       updated_at: "2025-12-24T18:20:11.112233+02:00",
+      is_special: false,
     },
   ];
 

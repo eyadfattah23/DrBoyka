@@ -2,7 +2,23 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import FOG from "vanta/dist/vanta.fog.min";
 
-export default function FogBackground() {
+const toHexNumber = (color) => {
+  if (typeof color === "number") return color;
+  if (typeof color === "string") {
+    return parseInt(color.replace("#", ""), 16);
+  }
+  return color;
+};
+
+export default function FogBackground({
+  fixed = false,
+  className = "",
+
+  highlightColor = "#ebfc4f",
+  midtoneColor = "#d9fc23",
+  lowlightColor = "#a9c933",
+  baseColor = "#f7ffeb",
+}) {
   const vantaRef = useRef(null);
   const vantaEffect = useRef(null);
 
@@ -15,10 +31,10 @@ export default function FogBackground() {
         touchControls: false,
         gyroControls: false,
 
-        highlightColor: 0xebfc4f,
-        midtoneColor: 0xd9fc23,
-        lowlightColor: 0xa9c933,
-        baseColor: 0xf7ffeb,
+        highlightColor: toHexNumber(highlightColor),
+        midtoneColor: toHexNumber(midtoneColor),
+        lowlightColor: toHexNumber(lowlightColor),
+        baseColor: toHexNumber(baseColor),
 
         blurFactor: 0.4,
         zoom: 0.9,
@@ -26,7 +42,12 @@ export default function FogBackground() {
       });
     }
 
+    const resize = () => vantaEffect.current?.resize();
+    window.addEventListener("resize", resize);
+    resize();
+
     return () => {
+      window.removeEventListener("resize", resize);
       vantaEffect.current?.destroy();
       vantaEffect.current = null;
     };
@@ -35,7 +56,10 @@ export default function FogBackground() {
   return (
     <div
       ref={vantaRef}
-      className="fixed inset-0 z-0"
+      className={`
+        ${fixed ? "fixed inset-0" : "absolute inset-0"}
+        ${className} 
+      `}
     />
   );
 }
