@@ -26,7 +26,7 @@ function Ribbon({
   after12,
 }) {
   return (
-    <div className="ribbon z-20 flex flex-row-reverse gap-1 items-center">
+    <div className="ribbon z-20 flex flex-row-reverse gap-1.5 items-center">
       <div>
         {calcDisc(
           selectedMonth,
