@@ -420,7 +420,6 @@ export default function PackagePopup({
                               setTimeout(() => {
                                 whatsappInputRef.current?.focus();
                               }, 0);
-                              console.log(whatsappCode);
                             }}
                             options={countryOptions}
                             placeholder="البلد"

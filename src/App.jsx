@@ -32,7 +32,7 @@ function App() {
 
         setUsdRate(data.rates.USD);
       } catch (err) {
-        console.error("Currency error:", err);
+        console.log(err);
       }
     };
 
