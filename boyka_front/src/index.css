@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-xs: 450px;
+  --breakpoint-2xs: 370px;
+}
+
+@layer base {
+  html {
+    font-size: 16px;
+  }
+}
+
+@font-face {
+  font-family: "Norsal";
+  src: url("./assets/fonts/alfont_com_NorsalGX.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: "Norsal", system-ui, sans-serif;
+}
+
+:root {
+  --color-bg: rgba(26, 26, 26, 1);
+  --color-primary: rgba(217, 252, 35, 1);
+}
+
+.swal2-container {
+  backdrop-filter: blur(4px);
+}
+
+.custom-popup {
+  font-family: "Norsal", sans-serif;
+  border-radius: 20px;
+  background: linear-gradient(300deg, #ffffff 50%, #f4ffaf 100%);
+
+  max-width: 90%;
+  width: auto;
+  box-sizing: border-box;
+  padding: 0 20px 0 20px;
+}
+
+.custom-text {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.custom-btn {
+  padding: 0.5rem 1rem;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 1rem;
+  cursor: pointer;
+  background-color: var(--color-primary);
+  margin-bottom: 48px;
+  color: black;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s, transform 0.2s;
+}
+
+.custom-btn:hover {
+  background-color: var(--color-primary);
+}
+
+@keyframes pulseSkew {
+  0% {
+    transform: rotate(20deg) skew(0deg, 0deg) scale(1);
+  }
+  50% {
+    transform: rotate(20deg) skew(6deg, 2deg) scale(1.08);
+  }
+  100% {
+    transform: rotate(20deg) skew(0deg, 0deg) scale(1);
+  }
+}
+
+.pulse-skew {
+  animation: pulseSkew 1.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.ribbon {
+  font-size: 28px;
+  font-weight: 900;
+  color: #fff;
+  font-family: cursive;
+}
+
+.ribbon {
+  --f: 0.5em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 1.8;
+  padding-inline: 1lh;
+  padding-bottom: var(--f);
+  border-image: conic-gradient(#0008 0 0) 51% / var(--f);
+  clip-path: polygon(
+    100% calc(100% - var(--f)),
+    100% 100%,
+    calc(100% - var(--f)) calc(100% - var(--f)),
+    var(--f) calc(100% - var(--f)),
+    0 100%,
+    0 calc(100% - var(--f)),
+    999px calc(100% - var(--f) - 999px),
+    calc(100% - 999px) calc(100% - var(--f) - 999px)
+  );
+  transform: translate(calc((cos(45deg) - 1) * 100%), -100%) rotate(-45deg);
+  transform-origin: 100% 100%;
+  background-color: rgb(255, 211, 0);
+}
