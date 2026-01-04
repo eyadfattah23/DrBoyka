@@ -2,7 +2,7 @@ import { FaArrowCircleLeft, FaWhatsapp } from "react-icons/fa";
 import Button from "../components/Button.jsx";
 import Container from "../components/Container.jsx";
 import { TiArrowLeftThick } from "react-icons/ti";
-import Arrow from "../components/arrow.jsx";
+import Arrow from "../components/Arrow.jsx";
 import { MotionDiv } from "../animations/MotionPresets.jsx";
 import TypeWriter from "../animations/TypeWriter.jsx";
 
@@ -72,11 +72,7 @@ export default function Hero() {
               className="mb-10 text-xl font-medium h-15 md:h-8"
               style={{ color: "rgba(230, 230, 230, 1)" }}
             >
-              <TypeWriter
-                speed={60}
-                delay={1}
-                onComplete={() => {}}
-              >
+              <TypeWriter speed={60} delay={1} onComplete={() => {}}>
                 اشترك حالاً وارمي الكسل على جنب - في أقل من شهر هتشوف نتايج
                 تخليك فخور بنفسك!
               </TypeWriter>
