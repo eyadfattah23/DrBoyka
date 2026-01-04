@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import Container from "./Container";
 import Button from "./Button";
-import Arrow from "./arrow";
+import Arrow from "../components/Arrow";
 import { BiBorderRadius } from "react-icons/bi";
 
 export default function Header({ selectedPackage, setSelectedPackage }) {
