@@ -97,6 +97,7 @@ class Subscription(models.Model):
     whatsapp_message_sid = models.CharField(max_length=100, blank=True)
     whatsapp_error = models.TextField(blank=True)
 
+
     notes = models.TextField(blank=True, help_text="Coach notes")
 
     class Meta:
@@ -105,6 +106,34 @@ class Subscription(models.Model):
     def __str__(self):
         return f"{self.fullname} - {self.package.name} ({self.get_status_display()})"
 
+    def clean(self):
+        """Validate if the user can subscribe to the selected package and duration"""
+        from django.core.exceptions import ValidationError
+
+        if not self.package.is_active:
+            raise ValidationError("Selected package is not active.")
+
+        if self.duration not in dict(self.DURATION_CHOICES):
+            raise ValidationError("Invalid duration selected.")
+        existing_subscriptions = Subscription.objects.filter(
+            whatsapp_phone_number=self.whatsapp_phone_number,
+            package=self.package,
+            duration=self.duration,
+            status__in=['pending_payment', 'active']
+        ).exclude(pk=self.pk).count()
+        if existing_subscriptions > 3:
+            raise ValidationError(
+                "this whatsapp phone number already has an +3 active or pending subscription for this package and duration."
+            )
+            
+    def save(self, *args, **kwargs):
+            if not self.price_before_discount or not self.price_after_discount:
+                pricing = self.get_price()
+                self.price_before_discount = pricing['before']
+                self.price_after_discount = pricing['after']
+            self.full_clean()
+            super().save(*args, **kwargs)
+            
     """ def save(self, *args, **kwargs):
         # Auto-send WhatsApp on creation
         is_new = self.pk is None

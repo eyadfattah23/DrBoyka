@@ -17,8 +17,8 @@ class PackageDescriptionAdmin(admin.ModelAdmin):
     list_filter = ('package',)
 @admin.register(Subscription)
 class SubscriptionAdmin(admin.ModelAdmin):
-    list_display = ('fullname', 'package__name', 'duration', 'status', "activated_at","whatsapp_phone_number", "calls_phone_number", "created_at", "expires_at")
-    list_editable =  ('status', "activated_at", "expires_at")
+    list_display = ('fullname', 'package__name', 'price_after_discount','duration', 'status', "activated_at","whatsapp_phone_number", "calls_phone_number", "created_at", "expires_at")
+    list_editable =  ('status', "activated_at", "expires_at", 'price_after_discount')
     exclude = ("email", "updated_at", "whatsapp_sent", "whatsapp_sent_at", "whatsapp_message_sid", "whatsapp_error", "price_before_discount", "price_after_discount")
     search_fields = ('fullname', 'package__name', 'whatsapp_phone_number', 'calls_phone_number')
     list_filter = ('duration', 'package__name', 'status' )
