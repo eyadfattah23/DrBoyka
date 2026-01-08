@@ -123,7 +123,7 @@ class Subscription(models.Model):
         ).exclude(pk=self.pk).count()
         if existing_subscriptions > 3:
             raise ValidationError(
-                "this whatsapp phone number already has an +3 active or pending subscription for this package and duration."
+                "This whatsapp phone number already has an +3 active or pending subscription for this package and duration."
             )
             
     def save(self, *args, **kwargs):
