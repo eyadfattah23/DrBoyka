@@ -68,6 +68,8 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                         selectedMonth={selectedMonth}
                         before1={pkg.one_month_price_before_discount}
                         after1={pkg.one_month_price_after_discount}
+                        before3={pkg.three_month_price_before_discount}
+                        after3={pkg.three_month_price_after_discount}
                         before6={pkg.six_month_price_before_discount}
                         after6={pkg.six_month_price_after_discount}
                         before12={pkg.twelve_month_price_before_discount}
@@ -173,6 +175,39 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                                 </p>
                               </div>
                             )}
+                            {selectedMonth === 3 && (
+                              <div>
+                                <div
+                                  className="flex items-center gap-1"
+                                  style={{
+                                    color: pkg.is_special
+                                      ? "rgba(0, 0, 0, 0.8)"
+                                      : "rgba(0, 0, 0, 1)",
+                                  }}
+                                >
+                                  <p className="font-bold text-2xl">
+                                    {pkg.three_month_price_after_discount} جنيه
+                                  </p>
+                                  {!usdRate ? (
+                                    ""
+                                  ) : (
+                                    <div className="mt-1 flex items-center gap-1 font-semibold text-xl ">
+                                      <span>=</span>
+                                      <span>
+                                        {convertToUSD(
+                                          pkg.three_month_price_after_discount
+                                        )}{" "}
+                                        دولار
+                                      </span>
+                                    </div>
+                                  )}
+                                </div>
+
+                                <p className="line-through text-gray-500 font-semibold text-[0.95rem]">
+                                  {pkg.three_month_price_before_discount} جنيه
+                                </p>
+                              </div>
+                            )}
                             {selectedMonth === 6 && (
                               <div>
                                 <div
@@ -240,8 +275,8 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                             )}
                           </div>
 
-                          <div className="flex gap-2 my-2 mb-12">
-                            {[1, 6, 12].map((month) => (
+                          <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-2 gap-2 my-2 mb-12">
+                            {[1, 3, 6, 12].map((month) => (
                               <button
                                 key={month}
                                 className={`pr-4 pl-4.5 pt-0.5 pb-2 rounded-lg`}
@@ -277,6 +312,8 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                               >
                                 {month === 1
                                   ? "شهر"
+                                  : month === 3
+                                  ? "3 شهور"
                                   : month === 6
                                   ? "6 شهور"
                                   : "12 شهر"}
@@ -421,6 +458,8 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                         selectedMonth={selectedMonth}
                         before1={pkg.one_month_price_before_discount}
                         after1={pkg.one_month_price_after_discount}
+                        before3={pkg.three_month_price_before_discount}
+                        after3={pkg.three_month_price_after_discount}
                         before6={pkg.six_month_price_before_discount}
                         after6={pkg.six_month_price_after_discount}
                         before12={pkg.twelve_month_price_before_discount}
@@ -499,6 +538,38 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                               </p>
                             </div>
                           )}
+                          {selectedMonth === 3 && (
+                            <div>
+                              <div
+                                className="flex xs:items-center xs:gap-1 xs:flex-row flex-col mb-2"
+                                style={{
+                                  color: pkg.is_special
+                                    ? "rgba(0, 0, 0, 0.8)"
+                                    : "rgba(0, 0, 0, 1)",
+                                }}
+                              >
+                                <p className="font-bold text-2xl">
+                                  {pkg.three_month_price_after_discount} جنيه
+                                </p>
+                                {!usdRate ? (
+                                  ""
+                                ) : (
+                                  <div className="xs:mt-1 flex items-center gap-1 font-normal 2xs:font-semibold 2xs:text-xl">
+                                    <span>=</span>
+                                    <span>
+                                      {convertToUSD(
+                                        pkg.three_month_price_after_discount
+                                      )}{" "}
+                                      دولار
+                                    </span>
+                                  </div>
+                                )}
+                              </div>
+                              <p className="line-through text-gray-500 font-semibold text-[0.95rem]">
+                                {pkg.three_month_price_before_discount} جنيه
+                              </p>
+                            </div>
+                          )}
                           {selectedMonth === 6 && (
                             <div>
                               <div
@@ -566,8 +637,8 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                           )}
                         </div>
 
-                        <div className="flex gap-2 my-2 mb-12">
-                          {[1, 6, 12].map((month) => (
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 my-2 mb-12">
+                          {[1, 3, 6, 12].map((month) => (
                             <button
                               key={month}
                               className={`pr-2.5 2xs:pr-4 pl-3 2xs:pl-4.5 pt-0.5 pb-2 rounded-lg`}
@@ -603,6 +674,8 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                             >
                               {month === 1
                                 ? "شهر"
+                                : month === 3
+                                ? "3 شهور"
                                 : month === 6
                                 ? "6 شهور"
                                 : "12 شهر"}

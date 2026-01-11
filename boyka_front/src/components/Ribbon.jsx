@@ -2,6 +2,8 @@ const calcDisc = function (
   selectedMonth,
   before1,
   after1,
+  before3,
+  after3,
   before6,
   after6,
   before12,
@@ -9,6 +11,8 @@ const calcDisc = function (
 ) {
   if (selectedMonth === 1) {
     return Math.round(((before1 - after1) / before1) * 100);
+  } else if (selectedMonth === 3) {
+    return Math.round(((before3 - after3) / before3) * 100);
   } else if (selectedMonth === 6) {
     return Math.round(((before6 - after6) / before6) * 100);
   } else {
@@ -20,6 +24,8 @@ function Ribbon({
   selectedMonth,
   before1,
   after1,
+  before3,
+  after3,
   before6,
   after6,
   before12,
@@ -32,6 +38,8 @@ function Ribbon({
           selectedMonth,
           before1,
           after1,
+          before3,
+          after3,
           before6,
           after6,
           before12,

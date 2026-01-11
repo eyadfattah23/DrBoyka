@@ -147,15 +147,11 @@ const Video = () => {
           >
             <video
               ref={videoRef}
-              src={
-                isDesktop
-                  ? "/images/original-video-expanded.mp4"
-                  : "/images/original-video.MP4"
-              }
+              src={isDesktop ? "/images/vid-desk.mp4" : "/images/vid-mob.mp4"}
               poster={
                 isDesktop
-                  ? "/images/original-poster-expanded.jpg"
-                  : "/images/original-poster.jpg"
+                  ? "/images/pos-desk.jpg"
+                  : "/images/pos-mob.jpg"
               }
               className="w-full h-auto block"
               onClick={handleVideoClick}
@@ -238,7 +234,7 @@ const Video = () => {
                   }`}
                   dir="ltr"
                 >
-                  <span className="text-white text-xs md:text-sm font-medium cursor-default">
+                  <span className="text-white text-sm font-medium cursor-default">
                     {formatTime(currentTime)} / {formatTime(duration)}
                   </span>
 

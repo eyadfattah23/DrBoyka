@@ -57,6 +57,11 @@ export default function PackagePopup({
         before: pkg.one_month_price_before_discount,
         after: pkg.one_month_price_after_discount,
       };
+    if (month === 3)
+      return {
+        before: pkg.three_month_price_before_discount,
+        after: pkg.three_month_price_after_discount,
+      };
     if (month === 6)
       return {
         before: pkg.six_month_price_before_discount,
@@ -266,6 +271,8 @@ export default function PackagePopup({
                         selectedMonth={selectedMonth}
                         before1={pkg.one_month_price_before_discount}
                         after1={pkg.one_month_price_after_discount}
+                        before3={pkg.three_month_price_before_discount}
+                        after3={pkg.three_month_price_after_discount}
                         before6={pkg.six_month_price_before_discount}
                         after6={pkg.six_month_price_after_discount}
                         before12={pkg.twelve_month_price_before_discount}
@@ -333,6 +340,8 @@ export default function PackagePopup({
                         مدة الاشتراك:{" "}
                         {selectedMonth === 1
                           ? "شهر"
+                          : selectedMonth === 3
+                          ? "3 شهور"
                           : selectedMonth === 6
                           ? "6 شهور"
                           : "12 شهر"}
