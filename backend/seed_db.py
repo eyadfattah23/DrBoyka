@@ -28,17 +28,22 @@ def run_seed():
         {
             "name": "باقة القوة الأساسية",
             "short_description": "برنامج تدريبي متكامل للمبتدئين يركز على بناء العضلات.",
-            "prices": ["500.00", "400.00", "2500.00", "2000.00", "4500.00", "3500.00"]
+            "prices": ["500.00", "400.00", "1200.00", "1000.00", "2500.00", "2000.00", "4500.00", "3500.00"]
         },
         {
             "name": "التدريب الشخصي النخبة",
             "short_description": "تواصل مباشر مع الكوتش 24/7 مع خطة تغذية مخصصة تماماً.",
-            "prices": ["1200.00", "1000.00", "6000.00", "5000.00", "10000.00", "8500.00"]
+            "prices": ["1200.00", "1000.00", "3600.00", "3000.00", "6000.00", "5000.00", "10000.00", "8500.00"]
         },
         {
             "name": "باقة التنشيف وحرق الدهون",
             "short_description": "خطة مكثفة لخسارة الوزن والحصول على جسم رياضي في وقت قياسي.",
-            "prices": ["800.00", "650.00", "4000.00", "3200.00", "7000.00", "5500.00"]
+            "prices": ["800.00", "650.00", "4000.00", "3200.00", "7000.00", "5500.00", "12000.00", "9500.00"]
+        },
+        {
+            "name": "باقة التنشيف وحرق  الدهون السوبر",
+            "short_description": "خطة مكثفة لخسارة الوزن والحصول على جسم رياضي في وقت قياسي.",
+            "prices": ["800.00", "650.00", "4000.00", "3200.00", "7000.00", "5500.00", "12000.00", "9500.00"]
         }
     ]
 
@@ -50,10 +55,12 @@ def run_seed():
                 "short_description": p["short_description"],
                 "one_month_price_before_discount": Decimal(p["prices"][0]),
                 "one_month_price_after_discount": Decimal(p["prices"][1]),
-                "six_month_price_before_discount": Decimal(p["prices"][2]),
-                "six_month_price_after_discount": Decimal(p["prices"][3]),
-                "twelve_month_price_before_discount": Decimal(p["prices"][4]),
-                "twelve_month_price_after_discount": Decimal(p["prices"][5]),
+                "three_month_price_before_discount": Decimal(p["prices"][2]),
+                "three_month_price_after_discount": Decimal(p["prices"][3]),
+                "six_month_price_before_discount": Decimal(p["prices"][4]),
+                "six_month_price_after_discount": Decimal(p["prices"][5]),
+                "twelve_month_price_before_discount": Decimal(p["prices"][6]),
+                "twelve_month_price_after_discount": Decimal(p["prices"][7]),
             }
         )
         created_packages.append(pkg)
@@ -71,6 +78,7 @@ def run_seed():
     subscriptions_data = [
         {"name": "أحمد محمد", "email": "ahmed@example.com", "duration": "1_month"},
         {"name": "سارة علي", "email": "sara@example.com", "duration": "6_months"},
+        {"name": "مريم خالد", "email": "mariam@example.com", "duration": "3_months"},
         {"name": "ياسين حسن", "email": "yassin@example.com", "duration": "12_months"},
     ]
 
