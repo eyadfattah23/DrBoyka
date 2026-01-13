@@ -164,7 +164,6 @@ function Transformations() {
                       flippedCards[item.id] ? "is-flipped" : ""
                     }`}
                   >
-                    {/* Front Side */}
                     <div className="card-front rounded-2xl p-3 shadow-lg overflow-hidden bg-white/18 backdrop-blur-md border border-white/30 transition-all duration-500 cursor-grab h-full">
                       <div className="flex gap-3 h-40 sm:h-62 mb-8">
                         <div className="relative flex-1">
@@ -219,7 +218,6 @@ function Transformations() {
                       />
                     </div>
 
-                    {/* Back Side */}
                     <div className="card-back rounded-2xl p-4 shadow-lg overflow-hidden bg-white/18 backdrop-blur-md border border-white/30 transition-all duration-500 h-full flex flex-col">
                       <h3
                         className="text-lg font-semibold mb-1 text-white"
@@ -291,7 +289,6 @@ function Transformations() {
             display: none !important;
           }
 
-          /* 3D Flip Styles */
           .card-container {
             perspective: 1000px;
           }
