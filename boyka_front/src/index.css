@@ -128,10 +128,6 @@ body {
 }
 
 .pulse-btn {
-  background-color: #fff; /* أو أي لون تحبه */
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
   transition: transform 0.2s;
   animation: pulse-2 1.5s infinite;
 }
