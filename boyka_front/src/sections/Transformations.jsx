@@ -108,7 +108,7 @@ function Transformations() {
       story:
         "أحمد كان طول عمره حاسس بالتعب ومش راضي عن شكل جسمه، وزنه زايد وطاقته منخفضة، وكل يوم كان بيأجل فكرة التغيير، لحد ما قرر يبدأ رحلة الجيم بشكل جدي. بدأ يروح 3 مرات في الأسبوع، اتعلم نظام أكل صحي، وركز على تمارين القوة واللياقة، ومع الوقت جسمه اتغير قدامه يوم ورا يوم، بقي متناسق وعضلاته بدأت تظهر، وطاقته زادت بشكل ملحوظ. دلوقتي كريم مش بس مبسوط من شكله، لكن ثقته بنفسه ارتفعت جدًا، وبيبقى فخور بكل خطوة صغيرة اتخذها لتحقيق هدفه، وبيأكد لكل الناس حواليه إن الاستمرارية والعزيمة هما المفتاح الحقيقي لأي تغيير.",
     },
-  ];*/
+  ]; */
 
   let content;
 
@@ -158,14 +158,14 @@ function Transformations() {
           >
             {data.map((item) => (
               <SwiperSlide key={item.id} className="swiper-slide-custom">
-                <div className="card-container h-90 sm:h-105 relative">
+                <div className="card-container relative">
                   <div
                     className={`card-inner ${
                       flippedCards[item.id] ? "is-flipped" : ""
                     }`}
                   >
-                    <div className="card-front rounded-2xl p-3 shadow-lg overflow-hidden bg-white/18 backdrop-blur-md border border-white/30 transition-all duration-500 cursor-grab h-full">
-                      <div className="flex gap-3 h-40 sm:h-62 mb-8">
+                    <div className="card-front rounded-2xl p-3 pb-12 shadow-lg overflow-hidden bg-white/18 backdrop-blur-md border border-white/30 transition-all duration-500 cursor-grab">
+                      <div className="flex gap-3 h-40 sm:h-62 mb-12">
                         <div className="relative flex-1">
                           <div className="w-full h-full overflow-hidden rounded-2xl">
                             <img
@@ -203,7 +203,7 @@ function Transformations() {
                         <h3 className="text-xl font-semibold mb-2.5 text-white">
                           {item.name}
                         </h3>
-                        <div className="flex gap-1 mb-3 items-center">
+                        <div className="flex gap-1 items-center">
                           <img src="/images/timer.svg" alt="duration" />
                           <span style={{ color: "var(--color-primary)" }}>
                             {item.duration}
@@ -218,43 +218,19 @@ function Transformations() {
                       />
                     </div>
 
-                    <div className="card-back rounded-2xl p-4 shadow-lg overflow-hidden bg-white/18 backdrop-blur-md border border-white/30 transition-all duration-500 h-full flex flex-col">
+                    <div className="card-back rounded-2xl p-4 shadow-lg overflow-hidden bg-white/18 backdrop-blur-md border border-white/30 transition-all duration-500 flex flex-col">
                       <h3
                         className="text-lg font-semibold mb-1 text-white"
                         style={{ color: "var(--color-primary)" }}
                       >
                         قصة نجاح {item.name}
                       </h3>
-                      <p className="text-white/80 leading-relaxed text-sm flex-1 mb-14 block xs:hidden">
-                        {item.story.length > 350
-                          ? item.story.slice(0, 350) + " ..."
-                          : item.story}
-                      </p>
-                      <p className="text-white/80 leading-relaxed text-sm flex-1 mb-14 hidden xs:block sm:hidden">
-                        {item.story.length > 500
-                          ? item.story.slice(0, 500) + " ..."
-                          : item.story}
-                      </p>
-                      <p className="text-white/80 leading-relaxed text-sm flex-1 mb-14 hidden sm:block md:hidden">
-                        {item.story.length > 1000
-                          ? item.story.slice(0, 1000) + " ..."
-                          : item.story}
-                      </p>
-                      <p className="text-white/80 leading-relaxed text-sm flex-1 mb-14 hidden md:block lg:hidden">
-                        {item.story.length > 620
-                          ? item.story.slice(0, 620) + " ..."
-                          : item.story}
-                      </p>
-                      <p className="text-white/80 leading-relaxed text-sm flex-1 mb-14 hidden lg:block xl:hidden">
-                        {item.story.length > 900
-                          ? item.story.slice(0, 900) + " ..."
-                          : item.story}
-                      </p>
-                      <p className="text-white/80 leading-relaxed text-sm flex-1 mb-14 hidden xl:block">
-                        {item.story.length > 720
-                          ? item.story.slice(0, 720) + " ..."
-                          : item.story}
-                      </p>
+
+                      <div className="story-container">
+                        <p className="text-white/80 leading-relaxed text-sm story-text">
+                          {item.story}
+                        </p>
+                      </div>
 
                       <Button
                         onClick={() => toggleFlip(item.id)}
@@ -292,10 +268,10 @@ function Transformations() {
           .card-container {
             perspective: 1000px;
           }
+          
           .card-inner {
             position: relative;
             width: 100%;
-            height: 100%;
             transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             transform-style: preserve-3d;
           }
@@ -303,14 +279,39 @@ function Transformations() {
             transform: rotateY(180deg);
           }
           .card-front, .card-back {
-            position: absolute;
             width: 100%;
-            height: 100%;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
           }
+          
+          .card-front {
+            position: relative;
+          }
+          
           .card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
             transform: rotateY(180deg);
+          }
+
+          .story-container {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding-bottom: 0.5rem;
+          }
+
+          .story-text {
+            display: -webkit-box;
+            -webkit-line-clamp: 8;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.6;
+            padding-bottom: 0.25rem;
           }
 
           @media (max-width: 767px) {
@@ -332,6 +333,16 @@ function Transformations() {
               transform: scale(1) translateZ(0);
               opacity: 1;
               filter: blur(0);
+            }
+
+            .story-text {
+              -webkit-line-clamp: 9;
+            }
+          }
+
+          @media (min-width: 640px){
+            .story-text {
+              -webkit-line-clamp: 13;
             }
           }
 
