@@ -12,6 +12,10 @@ class Package(models.Model):
     one_month_price_after_discount = models.DecimalField(verbose_name="1 Month Price After Discount",
                                                          max_digits=10, decimal_places=2)
 
+    three_month_price_before_discount = models.DecimalField(verbose_name="3 Months Price Before Discount",
+                                                           max_digits=10, decimal_places=2)
+    three_month_price_after_discount = models.DecimalField(verbose_name="3 Months Price After Discount",
+                                                          max_digits=10, decimal_places=2)
     six_month_price_before_discount = models.DecimalField(verbose_name="6 Months Price Before Discount",
                                                           max_digits=10, decimal_places=2)
     six_month_price_after_discount = models.DecimalField(verbose_name="6 Months Price After Discount",
@@ -60,6 +64,7 @@ class PackageDescription(models.Model):
 class Subscription(models.Model):
     DURATION_CHOICES = [
         ('1_month', '1 Month'),
+        ('3_months', '3 Months'), 
         ('6_months', '6 Months'),
         ('12_months', '12 Months'),
     ]
@@ -149,6 +154,12 @@ class Subscription(models.Model):
                 'before': self.package.one_month_price_before_discount,
                 'after': self.package.one_month_price_after_discount
             }
+        elif self.duration == '3_months':
+            return {
+                'before': self.package.three_month_price_before_discount,
+                'after': self.package.three_month_price_after_discount
+            }
+        
         elif self.duration == '6_months':
             return {
                 'before': self.package.six_month_price_before_discount,
