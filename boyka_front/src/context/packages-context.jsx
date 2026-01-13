@@ -5,10 +5,10 @@ const PackagesContext = createContext(null);
 
 export function PackagesProvider({ children }) {
   const [packagesIsLoading, setPackagesIsLoading] = useState(false);
-  // const [packages, setPackages] = useState(null);
+  const [packages, setPackages] = useState(null);
   const [errorFetchingPackages, setErrorFetchingPackages] = useState(false);
 
-  /*useEffect(() => {
+  useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setPackagesIsLoading(true);
     setErrorFetchingPackages(false);
@@ -29,9 +29,9 @@ export function PackagesProvider({ children }) {
           setPackagesIsLoading(false);
         });
     }
-  }, []);*/
+  }, []);
 
-  const packages = [
+  /*const packages = [
     {
       id: 2,
       name: "باقة الانطلاقة القوية",
@@ -126,7 +126,7 @@ export function PackagesProvider({ children }) {
       updated_at: "2025-12-24T18:20:11.112233+02:00",
       is_special: false,
     },
-  ];
+  ];*/
 
   return (
     <PackagesContext.Provider
