@@ -10,11 +10,21 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { MotionDiv } from "../animations/MotionPresets";
 import { BASE_URL } from "../config/api";
+import { TbRotate360 } from "react-icons/tb";
+import Button from "../components/Button";
 
 function Transformations() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [flippedCards, setFlippedCards] = useState({});
+
+  const toggleFlip = (id) => {
+    setFlippedCards((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,6 +51,8 @@ function Transformations() {
       duration: "4 شهور",
       id: 1,
       name: "أحمد محمد",
+      story:
+        "كريم كان طول عمره حاسس إنه مش راضي عن جسمه وحاسس بالتعب كل يوم، وزنه زايد وطاقته منخفضة، ودايمًا بيأجل فكرة التغيير، وكان كل مرة يشوف نفسه في المرايا يحس بالإحباط، بس جوّه كان عارف إنه محتاج يبدأ خطوة صغيرة. في يوم، قرر ياخد القرار ويحجز اشتراك في الجيم، وبدأ بروتين بسيط من تمارين الكارديو واللياقة، مع شوية تغييرات في أكله زي زيادة البروتين وتقليل السكريات، وكانت البداية صعبة جدًا، حاسس بالتعب والإرهاق ومرات كان نفسه يسيب، لكن كل مرة يشوف فرق صغير في جسمه يحس بالحماس يكمل. مع مرور الأسابيع، كريم بدأ يكتشف قدراته، العضلات بدأت تظهر تدريجيًا، طاقته ارتفعت، ومزاجه اتحسن، وحتى النوم والأكل بقيوا أفضل. استمر في روتينه، وبدأ يدخل تمارين جديدة ويتحدى نفسه أكتر كل مرة، ومع كل تقدم بسيط كان شعور الفخر بالنفس يزيد، لدرجة إنه دلوقتي مش بس جسمه متناسق وقوي، لكن ثقته بنفسه عالية جدًا، وكل الناس حواليه لاحظوا التغيير الكبير، وكريم بقى مثال حي على إن أي حد يقدر يغير نفسه لو كان ملتزم وصبور، وبيأكد لكل حد إن البداية أصعب حاجة، لكن الاستمرارية والعزيمة هما اللي بيخلوا التغيير حقيقي ومستدام.",
     },
     {
       after_image: "/images/after-2.jpg",
@@ -48,6 +60,8 @@ function Transformations() {
       duration: "3 شهور",
       id: 2,
       name: "كريم سامح",
+      story:
+        "أحمد كان طول عمره حاسس بالتعب ومش راضي عن شكل جسمه، وزنه زايد وطاقته منخفضة، وكل يوم كان بيأجل فكرة التغيير، لحد ما قرر يبدأ رحلة الجيم بشكل جدي. بدأ يروح 3 مرات في الأسبوع، اتعلم نظام أكل صحي، وركز على تمارين القوة واللياقة، ومع الوقت جسمه اتغير قدامه يوم ورا يوم، بقي متناسق وعضلاته بدأت تظهر، وطاقته زادت بشكل ملحوظ. دلوقتي كريم مش بس مبسوط من شكله، لكن ثقته بنفسه ارتفعت جدًا، وبيبقى فخور بكل خطوة صغيرة اتخذها لتحقيق هدفه، وبيأكد لكل الناس حواليه إن الاستمرارية والعزيمة هما المفتاح الحقيقي لأي تغيير.",
     },
     {
       after_image: "/images/after-3.jpg",
@@ -55,6 +69,8 @@ function Transformations() {
       duration: "12 شهر",
       id: 3,
       name: "محمود علي",
+      story:
+        "أحمد كان طول عمره حاسس بالتعب ومش راضي عن شكل جسمه، وزنه زايد وطاقته منخفضة، وكل يوم كان بيأجل فكرة التغيير، لحد ما قرر يبدأ رحلة الجيم بشكل جدي. بدأ يروح 3 مرات في الأسبوع، اتعلم نظام أكل صحي، وركز على تمارين القوة واللياقة، ومع الوقت جسمه اتغير قدامه يوم ورا يوم، بقي متناسق وعضلاته بدأت تظهر، وطاقته زادت بشكل ملحوظ. دلوقتي كريم مش بس مبسوط من شكله، لكن ثقته بنفسه ارتفعت جدًا، وبيبقى فخور بكل خطوة صغيرة اتخذها لتحقيق هدفه، وبيأكد لكل الناس حواليه إن الاستمرارية والعزيمة هما المفتاح الحقيقي لأي تغيير.",
     },
     {
       after_image: "/images/after-4.jpeg",
@@ -62,6 +78,8 @@ function Transformations() {
       duration: "6 شهور",
       id: 4,
       name: "يوسف حسام",
+      story:
+        "أحمد كان طول عمره حاسس بالتعب ومش راضي عن شكل جسمه، وزنه زايد وطاقته منخفضة، وكل يوم كان بيأجل فكرة التغيير، لحد ما قرر يبدأ رحلة الجيم بشكل جدي. بدأ يروح 3 مرات في الأسبوع، اتعلم نظام أكل صحي، وركز على تمارين القوة واللياقة، ومع الوقت جسمه اتغير قدامه يوم ورا يوم، بقي متناسق وعضلاته بدأت تظهر، وطاقته زادت بشكل ملحوظ. دلوقتي كريم مش بس مبسوط من شكله، لكن ثقته بنفسه ارتفعت جدًا، وبيبقى فخور بكل خطوة صغيرة اتخذها لتحقيق هدفه، وبيأكد لكل الناس حواليه إن الاستمرارية والعزيمة هما المفتاح الحقيقي لأي تغيير.",
     },
     {
       after_image: "/images/after.png",
@@ -69,6 +87,8 @@ function Transformations() {
       duration: "6 أسابيع",
       id: 5,
       name: "إسلام فتحي",
+      story:
+        "أحمد كان طول عمره حاسس بالتعب ومش راضي عن شكل جسمه، وزنه زايد وطاقته منخفضة، وكل يوم كان بيأجل فكرة التغيير، لحد ما قرر يبدأ رحلة الجيم بشكل جدي. بدأ يروح 3 مرات في الأسبوع، اتعلم نظام أكل صحي، وركز على تمارين القوة واللياقة، ومع الوقت جسمه اتغير قدامه يوم ورا يوم، بقي متناسق وعضلاته بدأت تظهر، وطاقته زادت بشكل ملحوظ. دلوقتي كريم مش بس مبسوط من شكله، لكن ثقته بنفسه ارتفعت جدًا، وبيبقى فخور بكل خطوة صغيرة اتخذها لتحقيق هدفه، وبيأكد لكل الناس حواليه إن الاستمرارية والعزيمة هما المفتاح الحقيقي لأي تغيير.",
     },
     {
       after_image: "/images/after.png",
@@ -76,6 +96,8 @@ function Transformations() {
       duration: "5 أشهر",
       id: 6,
       name: "عمر خالد",
+      story:
+        "أحمد كان طول عمره حاسس بالتعب ومش راضي عن شكل جسمه، وزنه زايد وطاقته منخفضة، وكل يوم كان بيأجل فكرة التغيير، لحد ما قرر يبدأ رحلة الجيم بشكل جدي. بدأ يروح 3 مرات في الأسبوع، اتعلم نظام أكل صحي، وركز على تمارين القوة واللياقة، ومع الوقت جسمه اتغير قدامه يوم ورا يوم، بقي متناسق وعضلاته بدأت تظهر، وطاقته زادت بشكل ملحوظ. دلوقتي كريم مش بس مبسوط من شكله، لكن ثقته بنفسه ارتفعت جدًا، وبيبقى فخور بكل خطوة صغيرة اتخذها لتحقيق هدفه، وبيأكد لكل الناس حواليه إن الاستمرارية والعزيمة هما المفتاح الحقيقي لأي تغيير.",
     },
     {
       after_image: "/images/after.png",
@@ -83,6 +105,8 @@ function Transformations() {
       duration: "90 يوم",
       id: 7,
       name: "حسام رمضان",
+      story:
+        "أحمد كان طول عمره حاسس بالتعب ومش راضي عن شكل جسمه، وزنه زايد وطاقته منخفضة، وكل يوم كان بيأجل فكرة التغيير، لحد ما قرر يبدأ رحلة الجيم بشكل جدي. بدأ يروح 3 مرات في الأسبوع، اتعلم نظام أكل صحي، وركز على تمارين القوة واللياقة، ومع الوقت جسمه اتغير قدامه يوم ورا يوم، بقي متناسق وعضلاته بدأت تظهر، وطاقته زادت بشكل ملحوظ. دلوقتي كريم مش بس مبسوط من شكله، لكن ثقته بنفسه ارتفعت جدًا، وبيبقى فخور بكل خطوة صغيرة اتخذها لتحقيق هدفه، وبيأكد لكل الناس حواليه إن الاستمرارية والعزيمة هما المفتاح الحقيقي لأي تغيير.",
     },
   ]; */
 
@@ -134,50 +158,85 @@ function Transformations() {
           >
             {data.map((item) => (
               <SwiperSlide key={item.id} className="swiper-slide-custom">
-                <div className="rounded-2xl p-3 shadow-lg overflow-hidden bg-white/18 backdrop-blur-md border border-white/30 transition-all duration-500 cursor-grab">
-                  <div className="flex gap-3 h-40 sm:h-62 mb-8">
-                    <div className="relative flex-1">
-                      <div className="w-full h-full overflow-hidden rounded-2xl">
-                        <img
-                          src={item.before_image}
-                          alt="Before"
-                          className="w-full h-full object-fill"
-                        />
+                <div className="card-container relative">
+                  <div
+                    className={`card-inner ${
+                      flippedCards[item.id] ? "is-flipped" : ""
+                    }`}
+                  >
+                    <div className="card-front rounded-2xl p-3 pb-12 shadow-lg overflow-hidden bg-white/18 backdrop-blur-md border border-white/30 transition-all duration-500 cursor-grab">
+                      <div className="flex gap-3 h-40 sm:h-62 mb-12">
+                        <div className="relative flex-1">
+                          <div className="w-full h-full overflow-hidden rounded-2xl">
+                            <img
+                              src={item.before_image}
+                              alt="Before"
+                              className="w-full h-full object-fill"
+                            />
+                          </div>
+                          <span
+                            className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 font-semibold text-center py-1.5 w-18 z-20 rounded-full px-4"
+                            style={{ background: "var(--color-primary)" }}
+                          >
+                            قبل
+                          </span>
+                        </div>
+
+                        <div className="relative flex-1">
+                          <div className="w-full h-full overflow-hidden rounded-2xl">
+                            <img
+                              src={item.after_image}
+                              alt="After"
+                              className="w-full h-full object-fill"
+                            />
+                          </div>
+                          <span
+                            className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 font-semibold text-center py-1.5 w-18 z-20 rounded-full px-4"
+                            style={{ background: "var(--color-primary)" }}
+                          >
+                            بعد
+                          </span>
+                        </div>
                       </div>
-                      <span
-                        className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 font-semibold text-center py-1.5 w-18 z-20 rounded-full px-4"
-                        style={{ background: "var(--color-primary)" }}
-                      >
-                        قبل
-                      </span>
+
+                      <div>
+                        <h3 className="text-xl font-semibold mb-2.5 text-white">
+                          {item.name}
+                        </h3>
+                        <div className="flex gap-1 items-center">
+                          <img src="/images/timer.svg" alt="duration" />
+                          <span style={{ color: "var(--color-primary)" }}>
+                            {item.duration}
+                          </span>
+                        </div>
+                      </div>
+
+                      <Button
+                        onClick={() => toggleFlip(item.id)}
+                        text="القصة"
+                        className="pulse-btn text-black font-bold absolute bottom-3 left-3 py-2 px-4"
+                      />
                     </div>
 
-                    <div className="relative flex-1">
-                      <div className="w-full h-full overflow-hidden rounded-2xl">
-                        <img
-                          src={item.after_image}
-                          alt="After"
-                          className="w-full h-full object-fill"
-                        />
-                      </div>
-                      <span
-                        className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 font-semibold text-center py-1.5 w-18 z-20 rounded-full px-4"
-                        style={{ background: "var(--color-primary)" }}
+                    <div className="card-back rounded-2xl p-4 shadow-lg overflow-hidden bg-white/18 backdrop-blur-md border border-white/30 transition-all duration-500 flex flex-col">
+                      <h3
+                        className="text-lg font-semibold mb-1 text-white"
+                        style={{ color: "var(--color-primary)" }}
                       >
-                        بعد
-                      </span>
-                    </div>
-                  </div>
+                        قصة نجاح {item.name}
+                      </h3>
 
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2.5 text-white">
-                      {item.name}
-                    </h3>
-                    <div className="flex gap-1 mb-3 items-center">
-                      <img src="/images/timer.svg" alt="duration" />
-                      <span style={{ color: "var(--color-primary)" }}>
-                        {item.duration}
-                      </span>
+                      <div className="story-container">
+                        <p className="text-white/80 leading-relaxed text-sm story-text">
+                          {item.story}
+                        </p>
+                      </div>
+
+                      <Button
+                        onClick={() => toggleFlip(item.id)}
+                        text="التحول"
+                        className="pulse-btn text-black font-bold absolute bottom-3 left-3 py-2 px-4"
+                      />
                     </div>
                   </div>
                 </div>
@@ -206,6 +265,55 @@ function Transformations() {
             display: none !important;
           }
 
+          .card-container {
+            perspective: 1000px;
+          }
+          
+          .card-inner {
+            position: relative;
+            width: 100%;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+          }
+          .card-inner.is-flipped {
+            transform: rotateY(180deg);
+          }
+          .card-front, .card-back {
+            width: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+          }
+          
+          .card-front {
+            position: relative;
+          }
+          
+          .card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            transform: rotateY(180deg);
+          }
+
+          .story-container {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding-bottom: 0.5rem;
+          }
+
+          .story-text {
+            display: -webkit-box;
+            -webkit-line-clamp: 8;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.6;
+            padding-bottom: 0.25rem;
+          }
+
           @media (max-width: 767px) {
             .swiper {
               overflow: visible !important;
@@ -225,6 +333,16 @@ function Transformations() {
               transform: scale(1) translateZ(0);
               opacity: 1;
               filter: blur(0);
+            }
+
+            .story-text {
+              -webkit-line-clamp: 9;
+            }
+          }
+
+          @media (min-width: 640px){
+            .story-text {
+              -webkit-line-clamp: 13;
             }
           }
 

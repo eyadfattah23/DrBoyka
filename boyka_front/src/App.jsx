@@ -76,7 +76,12 @@ function App() {
 
   return (
     <>
-      <ToastContainer position="top-left" rtl={true} theme="colored" />
+      <ToastContainer
+        position="top-left"
+        rtl={true}
+        theme="colored"
+        autoClose={10000}
+      />
       <PackagesProvider>
         <div
           style={{
