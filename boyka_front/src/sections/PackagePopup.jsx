@@ -144,17 +144,6 @@ export default function PackagePopup({
         body: JSON.stringify(data),
       });
 
-      if (response.status === 500) {
-        toast.error(
-          "حدث خطأٌ غير متوقع! ربما تكون مشتركًا بالفعل أو قد حاولت الاشتراك ولم تقم بإكمال الخطوات المطلوبة. من فضلك تواصل معي للتحقق من الأمر."
-        );
-        resetForm();
-        window.lenis.scrollTo(15, {
-          duration: 0.5,
-        });
-        return;
-      }
-
       const result = await response.json();
 
       if (result.success) {
@@ -177,6 +166,14 @@ export default function PackagePopup({
           }
         });
         resetForm();
+      } else if (result.whatsapp_phone_number_duplication) {
+        toast.error(
+          "لم يتم إرسال الطلب! أنت مشترك بالفعل أو حاولت الاشتراك ولم تقم بإكمال الخطوات المطلوبة. من فضلك تواصل معي للتحقق من الأمر."
+        );
+        resetForm();
+        window.lenis.scrollTo(15, {
+          duration: 0.5,
+        });
       } else {
         toast.error("حدث خطأ غير متوقع!");
       }
