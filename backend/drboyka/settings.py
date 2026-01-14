@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-enp#1-zcl-0_%!n7y5f9dc@m*0l5oio6mv0lto4o4vn#j91-1l')
 
 # DEBUG
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config('DEBUG', default=0, cast=bool)
 
 # ALLOWED_HOSTS
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,.onrender.com').split(',')
