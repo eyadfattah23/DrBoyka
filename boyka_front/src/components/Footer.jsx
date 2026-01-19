@@ -108,7 +108,7 @@ function Footer() {
                     Mahmoud Ali Taha (UI/UX Designer)
                   </p>
                   <div
-                    className="flex items-center gap-1 lg:gap-0.5 text-[25px] lg:text-[21px]"
+                    className="flex items-center gap-1 lg:gap-0.5 text-[24.5px] lg:text-[21px]"
                     style={{ color: "var(--color-primary)" }}
                   >
                     <a
@@ -139,7 +139,7 @@ function Footer() {
                     Hussain Saeed (Frontend Developer)
                   </p>
                   <div
-                    className="flex items-center gap-1 lg:gap-0.5 text-[25px] lg:text-[21px]"
+                    className="flex items-center gap-1 lg:gap-0.5 text-[24.5px] lg:text-[21px]"
                     style={{ color: "var(--color-primary)" }}
                   >
                     <a
@@ -170,7 +170,7 @@ function Footer() {
                     Eyad Abdalfatah (Backend Developer)
                   </p>
                   <div
-                    className="flex items-center gap-1 lg:gap-0.5 text-[25px] lg:text-[21px]"
+                    className="flex items-center gap-1 lg:gap-0.5 text-[24.5px] lg:text-[21px]"
                     style={{ color: "var(--color-primary)" }}
                   >
                     <a
