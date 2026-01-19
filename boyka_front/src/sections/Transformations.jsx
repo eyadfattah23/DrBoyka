@@ -116,12 +116,17 @@ function Transformations() {
     content = <Loader />;
   } else if (hasError || !data || data.length === 0) {
     content = (
-      <div className="flex justify-center items-center flex-col">
-        <img src="/images/error-2.png" alt="error" />
-        <p className="text-2xl mt-4 font-semibold text-red-600">
-          حدث خطأ أثناء جلب البيانات!
-        </p>
-      </div>
+      <MotionDiv
+        variant="scaleFade"
+        visibleOverride={{ transition: { delay: 0.3, duration: 1 } }}
+      >
+        <div className="flex justify-center items-center flex-col">
+          <img src="/images/error-2.png" alt="error" />
+          <p className="text-2xl mt-4 font-semibold text-red-600">
+            حدث خطأ أثناء جلب البيانات!
+          </p>
+        </div>
+      </MotionDiv>
     );
   } else {
     content = (

@@ -97,7 +97,7 @@ export default function Faq() {
           descColor="rgba(96, 96, 96, 1)"
           descText="محتاج اي مساعدة ؟"
         />
-        <div className="flex flex-col lg:flex-row justify-between gap-6">
+        <div className="flex flex-col lg:flex-row gap-4">
           <div className="flex-1 flex flex-col gap-4">
             {dataColumn1.map((item) => (
               <AccordionItem

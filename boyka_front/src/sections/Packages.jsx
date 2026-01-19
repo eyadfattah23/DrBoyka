@@ -35,12 +35,17 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
     content = <Loader />;
   } else if (errorFetchingPackages || !packages || packages.length === 0) {
     content = (
-      <div className="flex justify-center items-center flex-col">
-        <img src="/images/error.png" alt="error" />
-        <p className="text-2xl mt-4 font-semibold text-red-600">
-          حدث خطأ أثناء جلب البيانات!
-        </p>
-      </div>
+      <MotionDiv
+        variant="scaleFade"
+        visibleOverride={{ transition: { delay: 0.3, duration: 1 } }}
+      >
+        <div className="flex justify-center items-center flex-col">
+          <img src="/images/error.png" alt="error" />
+          <p className="text-2xl mt-4 font-semibold text-red-600">
+            حدث خطأ أثناء جلب البيانات!
+          </p>
+        </div>
+      </MotionDiv>
     );
   } else {
     content = (
@@ -54,9 +59,9 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                 showAll
                   ? packages.length
                   : typeof window !== "undefined" &&
-                    window.matchMedia("(min-width: 1280px)").matches
-                  ? 3
-                  : 4
+                      window.matchMedia("(min-width: 1280px)").matches
+                    ? 3
+                    : 4,
               )
               .map((pkg, index) => {
                 const selectedMonth = selectedMonths[pkg.id] || 1;
@@ -162,7 +167,7 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                                       <span>=</span>
                                       <span>
                                         {convertToUSD(
-                                          pkg.one_month_price_after_discount
+                                          pkg.one_month_price_after_discount,
                                         )}{" "}
                                         دولار
                                       </span>
@@ -195,7 +200,7 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                                       <span>=</span>
                                       <span>
                                         {convertToUSD(
-                                          pkg.three_month_price_after_discount
+                                          pkg.three_month_price_after_discount,
                                         )}{" "}
                                         دولار
                                       </span>
@@ -228,7 +233,7 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                                       <span>=</span>
                                       <span>
                                         {convertToUSD(
-                                          pkg.six_month_price_after_discount
+                                          pkg.six_month_price_after_discount,
                                         )}{" "}
                                         دولار
                                       </span>
@@ -261,7 +266,7 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                                       <span>=</span>
                                       <span>
                                         {convertToUSD(
-                                          pkg.twelve_month_price_after_discount
+                                          pkg.twelve_month_price_after_discount,
                                         )}{" "}
                                         دولار
                                       </span>
@@ -286,25 +291,25 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                                     pkg.is_special === false
                                       ? " 0 10px 30px rgba(217, 252, 35, 0.25), 0 2px 6px rgba(0, 0, 0, 0.08)"
                                       : selectedMonth === month &&
-                                        pkg.is_special === true
-                                      ? " 0 8px 25px rgba(255, 211, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.1)"
-                                      : "",
+                                          pkg.is_special === true
+                                        ? " 0 8px 25px rgba(255, 211, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.1)"
+                                        : "",
                                   border:
                                     selectedMonth === month &&
                                     pkg.is_special === false
                                       ? "1px solid rgba(180, 210, 30, 0.8)"
                                       : selectedMonth === month &&
-                                        pkg.is_special === true
-                                      ? "1px solid #E6BE00"
-                                      : "1px solid #E0E0E0",
+                                          pkg.is_special === true
+                                        ? "1px solid #E6BE00"
+                                        : "1px solid #E0E0E0",
                                   background:
                                     selectedMonth === month &&
                                     pkg.is_special === false
                                       ? "var(--color-primary)"
                                       : selectedMonth === month &&
-                                        pkg.is_special === true
-                                      ? "rgb(255, 211, 0)"
-                                      : "rgba(245, 245, 245, 0.7)",
+                                          pkg.is_special === true
+                                        ? "rgb(255, 211, 0)"
+                                        : "rgba(245, 245, 245, 0.7)",
                                   cursor:
                                     selectedMonth === month ? "" : "pointer",
                                 }}
@@ -313,10 +318,10 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                                 {month === 1
                                   ? "شهر"
                                   : month === 3
-                                  ? "3 شهور"
-                                  : month === 6
-                                  ? "6 شهور"
-                                  : "12 شهر"}
+                                    ? "3 شهور"
+                                    : month === 6
+                                      ? "6 شهور"
+                                      : "12 شهر"}
                               </button>
                             ))}
                           </div>
@@ -525,7 +530,7 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                                     <span>=</span>
                                     <span>
                                       {convertToUSD(
-                                        pkg.one_month_price_after_discount
+                                        pkg.one_month_price_after_discount,
                                       )}{" "}
                                       دولار
                                     </span>
@@ -558,7 +563,7 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                                     <span>=</span>
                                     <span>
                                       {convertToUSD(
-                                        pkg.three_month_price_after_discount
+                                        pkg.three_month_price_after_discount,
                                       )}{" "}
                                       دولار
                                     </span>
@@ -590,7 +595,7 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                                     <span>=</span>
                                     <span>
                                       {convertToUSD(
-                                        pkg.six_month_price_after_discount
+                                        pkg.six_month_price_after_discount,
                                       )}{" "}
                                       دولار
                                     </span>
@@ -622,7 +627,7 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                                     <span>=</span>
                                     <span>
                                       {convertToUSD(
-                                        pkg.twelve_month_price_after_discount
+                                        pkg.twelve_month_price_after_discount,
                                       )}{" "}
                                       دولار
                                     </span>
@@ -648,25 +653,25 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                                   pkg.is_special === false
                                     ? " 0 10px 30px rgba(217, 252, 35, 0.25), 0 2px 6px rgba(0, 0, 0, 0.08)"
                                     : selectedMonth === month &&
-                                      pkg.is_special === true
-                                    ? " 0 8px 25px rgba(255, 211, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.1)"
-                                    : "",
+                                        pkg.is_special === true
+                                      ? " 0 8px 25px rgba(255, 211, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.1)"
+                                      : "",
                                 border:
                                   selectedMonth === month &&
                                   pkg.is_special === false
                                     ? "1px solid rgba(180, 210, 30, 0.8)"
                                     : selectedMonth === month &&
-                                      pkg.is_special === true
-                                    ? "1px solid #E6BE00"
-                                    : "1px solid #E0E0E0",
+                                        pkg.is_special === true
+                                      ? "1px solid #E6BE00"
+                                      : "1px solid #E0E0E0",
                                 background:
                                   selectedMonth === month &&
                                   pkg.is_special === false
                                     ? "var(--color-primary)"
                                     : selectedMonth === month &&
-                                      pkg.is_special === true
-                                    ? "rgb(255, 211, 0)"
-                                    : "rgba(245, 245, 245, 0.7)",
+                                        pkg.is_special === true
+                                      ? "rgb(255, 211, 0)"
+                                      : "rgba(245, 245, 245, 0.7)",
                                 cursor:
                                   selectedMonth === month ? "" : "pointer",
                               }}
@@ -675,10 +680,10 @@ export default function Packages({ onSelectPackage, convertToUSD, usdRate }) {
                               {month === 1
                                 ? "شهر"
                                 : month === 3
-                                ? "3 شهور"
-                                : month === 6
-                                ? "6 شهور"
-                                : "12 شهر"}
+                                  ? "3 شهور"
+                                  : month === 6
+                                    ? "6 شهور"
+                                    : "12 شهر"}
                             </button>
                           ))}
                         </div>
