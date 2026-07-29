@@ -6,13 +6,23 @@ import { CiLinkedin } from "react-icons/ci";
 import { TbWorld } from "react-icons/tb";
 import { TfiWorld } from "react-icons/tfi";
 
-function Footer() {
+function Footer({ selectedPackage }) {
   return (
-    <div dir="ltr" className="text-white pt-8 pb-8 relative overflow-hidden">
+    <div
+      dir="ltr"
+      className="text-white pt-8 pb-8 relative overflow-hidden"
+      style={{ backgroundColor: selectedPackage ? "var(--color-bg)" : "" }}
+    >
       <img
         src="/images/hero-left-ellipse.png"
         alt="ellipse"
         className="absolute -top-40 -right-120 z-50 hidden md:block"
+      />
+
+      <img
+        src="/images/hero-left-ellipse.png"
+        alt="ellipse"
+        className="absolute -top-40 -right-100 z-50 hidden md:block"
       />
 
       <Container className="relative">
@@ -200,6 +210,12 @@ function Footer() {
           </MotionDiv>
         </div>
       </Container>
+
+      <img
+        src="/images/footer.png"
+        alt="ellipse"
+        className="absolute bottom-0 right-25 z-50 hidden md:block lg:hidden w-50 opacity-40"
+      />
     </div>
   );
 }

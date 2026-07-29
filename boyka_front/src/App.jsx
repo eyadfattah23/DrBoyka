@@ -124,7 +124,7 @@ function App() {
             </>
           )}
 
-          <Footer />
+          <Footer selectedPackage={selectedPackage} />
         </div>
       </PackagesProvider>
     </>
